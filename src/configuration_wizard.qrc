@@ -1,0 +1,6 @@
+﻿<RCC>
+<qresource prefix="/">
+    <file>qml/main.qml</file>
+    <file>qml/Wizard.qml</file>
+</qresource>
+</RCC>
