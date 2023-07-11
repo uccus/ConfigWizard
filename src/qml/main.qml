@@ -7,19 +7,20 @@ Window {
     visible: true
     width: 800; height: 800
     
-    ListModel{
-        id: wizard_model;
-        ListElement{ name: "底盘配置" }
-        ListElement{ name: "定位感知" }
-        ListElement{ name: "安全防护" }
-        ListElement{ name: "载具功能" }
-        ListElement{ name: "人机交互" }
-        ListElement{ name: "其他" }
+    property var fake_data: {
+        "wizard": [
+            {name: "底盘配置"},
+            {name: "定位感知"},
+            {name: "安全防护"},
+            {name: "载具功能"},
+            {name: "人机交互"},
+            {name: "其他"},
+        ]
     }
     
     Wizard {
         id: wizard
-        model: wizard_model
+        model: fake_data.wizard
         index: 0
         width: 150;
         anchors{
@@ -27,7 +28,31 @@ Window {
             left: parent.left;
             bottom: parent.bottom;
         }
-        
+    }
+    
+    Searchbar {
+        id: searchbar
+        width: 250;
+        anchors {
+            top: parent.top;
+            right: parent.right
+            margins: 15
+        }
+
+        onBeginSearch: {
+            console.log("开始搜索" + val)
+        }
+    }
+    
+    ContentArea {
+        id: content
+        anchors {
+            left: wizard.right
+            top: searchbar.bottom
+            right: parent.right
+            bottom: btn_next.top
+            margins: 15
+        }
     }
     
     RoundButton {
@@ -39,7 +64,7 @@ Window {
             right: btn_finish.left
             margins: 15
         }
-        Text {
+        StyledText {
             text: qsTr("下一步")
             anchors.centerIn: parent
             font.pixelSize: 20
@@ -47,6 +72,7 @@ Window {
         onClicked: {
             if(wizard.index !== wizard_model.count - 1)
                 wizard.index += 1
+            console.log(content.current_index)
         }
     }
 
@@ -59,7 +85,7 @@ Window {
             right: btn_next.left
             margins: 15
         }
-        Text {
+        StyledText {
             text: qsTr("上一步")
             anchors.centerIn: parent
             font.pixelSize: 20
@@ -79,7 +105,7 @@ Window {
             right: parent.right
             margins: 15
         }
-        Text {
+        StyledText {
             text: qsTr("完成")
             anchors.centerIn: parent
             font.pixelSize: 20

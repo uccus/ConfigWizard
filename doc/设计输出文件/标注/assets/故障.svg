@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="16px" viewBox="0 0 21 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>故障</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="参数详情" transform="translate(-835.000000, -252.000000)" stroke="#F5222D" stroke-width="1.2">
+            <g id="编组-5备份" transform="translate(756.000000, 249.000000)">
+                <g id="Group-42" transform="translate(80.000000, 0.000000)">
+                    <g id="故障" transform="translate(0.000000, 4.000000)">
+                        <path d="M3.73333333,11.6666667 C2.17777467,11.6666667 0,10.9666667 0,8.16666667 C0,4.9 3.26666667,4.2 4.2,4.2 C4.66666667,2.56666667 5.6,0 9.33333333,0 C12.6,0 14,1.86666667 14.4666667,3.5 C14.4666667,3.5 18.6666667,3.96666667 18.6666667,7.93333333 C18.6666667,10.7333333 16.8,11.6666667 14.9333333,11.6666667" id="路径"></path>
+                        <line x1="11.6666667" y1="9.33333333" x2="7" y2="14" id="路径"></line>
+                        <line x1="7" y1="9.33333333" x2="11.6666667" y2="14" id="路径"></line>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="14px" viewBox="0 0 18 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>监控</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.85" stroke-linecap="round" stroke-linejoin="round">
+        <g id="参数详情" transform="translate(-1111.000000, -496.000000)" stroke="#000000" stroke-width="1.2">
+            <g id="编组-4" transform="translate(758.000000, 427.000000)">
+                <g id="编组-8" transform="translate(354.000000, 65.000000)">
+                    <g id="监控" transform="translate(0.000000, 5.000000)">
+                        <polyline id="路径" points="6.00250713 7.4039307 6.00250713 12 0 12"></polyline>
+                        <polygon id="路径" points="16.1230138 5.23506702 14.4671483 4.7913686 12.7518402 7.88127185 15.2356599 8.54679805"></polygon>
+                        <polygon id="路径" points="14.4670626 4.79141146 12.7517545 7.88131471 12.0050143 9.01226781 0 5.79555073 1.55291017 0 15.2138028 3.6604155"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>I/O</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.85">
+        <g id="0915_一页备份-2" transform="translate(-47.000000, -91.000000)" stroke="#000000" stroke-width="1.5">
+            <g id="I/O" transform="translate(48.000000, 92.000000)">
+                <circle id="椭圆形" cx="8" cy="8" r="8"></circle>
+                <path d="M8.00002105,3.1944 C9.22305854,3.1944 10.2145263,4.18586778 10.2145263,5.40890526 L10.2145263,11.0904211 C10.2145263,12.3134585 9.22305854,13.3049263 8.00002105,13.3049263 C6.77698357,13.3049263 5.78551579,12.3134585 5.78551579,11.0904211 L5.78551579,5.40890526 C5.78551579,4.18586778 6.77698357,3.1944 8.00002105,3.1944 Z" id="矩形" transform="translate(8.000021, 8.249663) rotate(90.000000) translate(-8.000021, -8.249663) "></path>
+                <rect id="矩形" transform="translate(10.950021, 8.358947) rotate(-180.000000) translate(-10.950021, -8.358947) " x="8.84475789" y="6.25368421" width="4.21052632" height="4.21052632" rx="2.10526316"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

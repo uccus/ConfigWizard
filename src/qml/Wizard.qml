@@ -21,13 +21,13 @@ Rectangle {
                 spacing: 5
                 Rectangle{
                     anchors.horizontalCenter: parent.horizontalCenter
-                    width: parent.width - 15
-                    height: 60
+                    width: parent.width - 20; height: 60; 
+                    clip: true; smooth: true
                     border.width: 1
                     color: model.index == root.index ? "#1e98d7" : "#ffffff"
-                    radius: 10
+                    radius: 8
                     Text{
-                        text: model.name
+                        text: modelData.name
                         font.pixelSize: 30
                         anchors.centerIn: parent
                         color: model.index == root.index ? "white" : "black"
@@ -37,7 +37,7 @@ Rectangle {
                     anchors.horizontalCenter: parent.horizontalCenter
                     source: "../images/1.png"
                     width: 20; height: 30
-                    visible: model.index != (wizard_model.count - 1)
+                    visible: model.index != (root.model.length - 1)
                 }
             }
         }

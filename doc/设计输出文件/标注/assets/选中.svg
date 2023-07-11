@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>选中</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+        <g id="参数详情" transform="translate(-117.000000, -200.000000)">
+            <g id="Group-40" transform="translate(118.000000, 198.000000)">
+                <g id="选中" transform="translate(0.000000, 3.000000)">
+                    <path d="M8,16 C10.20912,16 12.20912,15.10456 13.65684,13.65684 C15.10456,12.20912 16,10.20912 16,8 C16,5.79088 15.10456,3.79088 13.65684,2.343144 C12.20912,0.895432 10.20912,0 8,0 C5.79088,0 3.79088,0.895432 2.343144,2.343144 C0.895432,3.79088 0,5.79088 0,8 C0,10.20912 0.895432,12.20912 2.343144,13.65684 C3.79088,15.10456 5.79088,16 8,16 Z" id="路径" stroke="#1890FF" fill="#1890FF"></path>
+                    <polyline id="路径" stroke="#FFFFFF" stroke-linecap="round" points="4.8 8 7.2 10.4 12 5.6"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

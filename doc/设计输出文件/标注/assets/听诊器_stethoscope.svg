@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>听诊器_stethoscope</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="参数详情" transform="translate(-755.000000, -155.000000)" stroke="#1890FF" stroke-width="1.2">
+            <g id="编组-2备份-3" transform="translate(756.000000, 152.000000)">
+                <g id="听诊器_stethoscope" transform="translate(0.000000, 4.000000)">
+                    <path d="M6.28159,0 L6.28159,2.1 M2.11841,1.05 L0,1.05 C0,1.05 0,4.2 0,5.95 C0,7.7 1.4,9.8 4.2,9.8 C7,9.8 8.4,7.7 8.4,5.95 C8.4,4.2 8.4,1.05 8.4,1.05 L6.28159,1.05 L2.11841,1.05 Z M2.11841,0 L2.11841,2.1 L2.11841,0 Z" id="形状"></path>
+                    <path d="M12.6,6.65 C13.373185,6.65 14,6.023185 14,5.25 C14,4.476815 13.373185,3.85 12.6,3.85 C11.826815,3.85 11.2,4.476815 11.2,5.25 C11.2,6.023185 11.826815,6.65 12.6,6.65 Z" id="路径"></path>
+                    <path d="M4.2,9.8 C4.2,12.11959 6.08041,14 8.4,14 C10.71959,14 12.6,12.11959 12.6,9.8 L12.6,6.65" id="路径"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
