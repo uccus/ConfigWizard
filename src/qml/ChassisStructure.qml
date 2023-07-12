@@ -1,9 +1,10 @@
 ﻿import QtQuick 2.0
 import QtQuick.Controls 2.2
+import Toou2D 1.0
 
-Rectangle {
+TRectangle {
     id: root
-    implicitHeight: !img.visible ? title_line.implicitHeight : title_line.implicitHeight + img.height + 15
+    implicitHeight: img.visible ? title_line.implicitHeight + img.height + 15 : title_line.implicitHeight
     clip:true
 
     Column {
@@ -16,7 +17,7 @@ Rectangle {
             width: parent.width
         }
 
-        Image {
+        TImage {
             id: img
             source: "../images/3.png"
             anchors {
@@ -26,7 +27,7 @@ Rectangle {
             }
             width: sourceSize.width / 4
             height: sourceSize.height / 4 
-            visible: !title_line.clicked
+            visible: title_line.expanded
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿import QtQuick 2.0
 import QtQuick.Controls 2.2
+import Toou2D 1.0
 
-Rectangle {
+TRectangle {
     property int current_index: 0
 
-    implicitHeight: title_line.implicitHeight + row.height
+    implicitHeight: row.visible ? title_line.implicitHeight + row.height : title_line.implicitHeight
     clip:true
 
     ListModel {
@@ -59,7 +60,7 @@ Rectangle {
             horizontalCenter: parent.horizontalCenter
         }
         spacing: 20
-        visible: !title_line.clicked
+        visible: title_line.expanded
         Repeater {
             model: check_model
             delegate: check_pic

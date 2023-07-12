@@ -1,26 +1,35 @@
 ﻿import QtQuick 2.0
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.2
+import Toou2D 1.0
 
 Window {
     id: root
     visible: true
     width: 800; height: 800
+    color: "#fafafa"
     
-    property var fake_data: {
-        "wizard": [
-            {name: "底盘配置"},
-            {name: "定位感知"},
-            {name: "安全防护"},
-            {name: "载具功能"},
-            {name: "人机交互"},
-            {name: "其他"},
-        ]
+    T2DWorld{
+        // mouseAreaCursorShape: Qt.PointingHandCursor
+        appStartupTheme: "None"
+        // appThemePaths: [
+        //     "qrc:/themes/"
+        // ]
+    }
+
+    ListModel {
+        id: wizard_model
+        ListElement {name: "底盘配置"}
+        ListElement {name: "定位感知"}
+        ListElement {name: "安全防护"}
+        ListElement {name: "载具功能"}
+        ListElement {name: "人机交互"}
+        ListElement {name: "其他"}
     }
     
     Wizard {
         id: wizard
-        model: fake_data.wizard
+        model: wizard_model
         index: 0
         width: 150;
         anchors{
@@ -29,45 +38,54 @@ Window {
             bottom: parent.bottom;
         }
     }
-    
-    Searchbar {
+
+    TInputField{
         id: searchbar
-        width: 250;
+        width: 180
+        placeholderIcon.source: TAwesomeType.FA_search
+        placeholderLabel.text: "type something"
         anchors {
             top: parent.top;
             right: parent.right
             margins: 15
         }
-
-        onBeginSearch: {
-            console.log("开始搜索" + val)
+        Keys.onPressed: {
+            if (event.key === Qt.Key_Return) {
+                console.log("开始搜索...." + " " + searchbar.text)
+                TToast.showInfo("提示",TTimePreset.LongTime4s,"开始搜索...");
+                // dialog.open();
+            }
         }
     }
     
-    ContentArea {
-        id: content
+    // ComboBox {
+    //     editable: true
+    //     model: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    //     width: 100; height: 30
+    //     anchors.centerIn: parent
+    // }
+    
+    Loader {
+        id: loader
+        clip: true
         anchors {
-            left: wizard.right
             top: searchbar.bottom
-            right: parent.right
             bottom: btn_next.top
-            margins: 15
+            left: wizard.right
+            right: parent.right
+            bottomMargin: 15
         }
+        source: "ChassisPage.qml"
     }
     
-    RoundButton {
+    TButton {
         id: btn_next
-        radius: 5
         width: 80; height: 30
+        label.text: qsTr("下一步")
         anchors{
             bottom: parent.bottom
             right: btn_finish.left
             margins: 15
-        }
-        StyledText {
-            text: qsTr("下一步")
-            anchors.centerIn: parent
-            font.pixelSize: 20
         }
         onClicked: {
             if(wizard.index !== wizard_model.count - 1)
@@ -76,19 +94,15 @@ Window {
         }
     }
 
-    RoundButton {
+    TButton {
         id: btn_prev
-        radius: 5
+        focus: true
+        label.text: qsTr("上一步")
         width: 80; height: 30
         anchors{
             bottom: parent.bottom
             right: btn_next.left
             margins: 15
-        }
-        StyledText {
-            text: qsTr("上一步")
-            anchors.centerIn: parent
-            font.pixelSize: 20
         }
         onClicked: {
             if(wizard.index !== 0)
@@ -96,24 +110,35 @@ Window {
         }
     }
 
-    RoundButton {
+    TButton {
         id: btn_finish
-        radius: 5
+        focus: true
+        label.text: qsTr("完成")
         width: 80; height: 30
         anchors{
             bottom: parent.bottom
             right: parent.right
             margins: 15
         }
-        StyledText {
-            text: qsTr("完成")
-            anchors.centerIn: parent
-            font.pixelSize: 20
-        }
         enabled: wizard.index === wizard_model.count - 1
         onClicked: {
-            // wizard.index -= 1
             console.log("finished");
         }
+    }
+
+    TDialog{
+        id:dialog
+        titleText: "Hi Toou2D";
+        contentText: "This a dialog style for default"
+        buttons: [
+            TDialogButton{
+                label.text: "Agree"
+                label.font.bold: true;
+                label.font.pixelSize: TPixelSizePreset.PH5
+                label.color: "#46A0FC"
+            }
+        ]
+
+        onTriggered: hideAndClose();
     }
 }

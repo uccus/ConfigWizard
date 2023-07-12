@@ -6,6 +6,9 @@
 
 int showConfigurationWizard()
 {
+    qputenv("QSG_RENDER_LOOP","basic");
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     int argc = 0;
     QGuiApplication app(argc, nullptr);
 

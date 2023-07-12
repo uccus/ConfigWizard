@@ -4,10 +4,12 @@
     <file>qml/Wizard.qml</file>
     <file>qml/Searchbar.qml</file>
     <file>qml/TitleLine.qml</file>
-    <file>qml/ContentArea.qml</file>
     <file>qml/ChassisPage.qml</file>
     <file>qml/ChassisStructure.qml</file>
     <file>qml/InstallDirection.qml</file>
+    <file>qml/DriverConfig.qml</file>
+    <file>qml/DynComponent.qml</file>
+    <file>qml/dynamic_create.js</file>
     <file>images/1.png</file>
     <file>images/2.png</file>
     <file>images/3.png</file>

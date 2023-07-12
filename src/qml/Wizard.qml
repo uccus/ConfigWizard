@@ -1,4 +1,5 @@
 ﻿import QtQuick 2.0
+import Toou2D 1.0
 
 Rectangle {
     id: root;
@@ -19,25 +20,24 @@ Rectangle {
                 width: parent.width
 
                 spacing: 5
-                Rectangle{
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    width: parent.width - 20; height: 60; 
+                TRectangle{
+                    width: parent.width - 30; height: 60; 
+                    radius: 2
                     clip: true; smooth: true
-                    border.width: 1
+                    anchors.horizontalCenter: parent.horizontalCenter
                     color: model.index == root.index ? "#1e98d7" : "#ffffff"
-                    radius: 8
-                    Text{
-                        text: modelData.name
-                        font.pixelSize: 30
+                    TLabel{
                         anchors.centerIn: parent
+                        text: model.name
+                        font.pixelSize: TPixelSizePreset.PH2;
                         color: model.index == root.index ? "white" : "black"
                     }
                 }
-                Image{
+                TImage{
                     anchors.horizontalCenter: parent.horizontalCenter
                     source: "../images/1.png"
                     width: 20; height: 30
-                    visible: model.index != (root.model.length - 1)
+                    visible: model.index != (root.model.count - 1)
                 }
             }
         }
