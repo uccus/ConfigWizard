@@ -4,6 +4,7 @@ import Toou2D 1.0
 
 TRectangle {
     id: root
+    height: implicitHeight
     implicitHeight: img.visible ? title_line.implicitHeight + img.height + 15 : title_line.implicitHeight
     clip:true
 
@@ -28,6 +29,12 @@ TRectangle {
             width: sourceSize.width / 4
             height: sourceSize.height / 4 
             visible: title_line.expanded
+        }
+    }
+
+    Behavior on height {
+        NumberAnimation {
+            duration: 200
         }
     }
 }

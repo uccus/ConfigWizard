@@ -7,6 +7,7 @@ TRectangle {
 
     id: root
     implicitHeight: txt.implicitHeight + 15
+    // height: txt.implicitHeight + 15
     width: parent.width
 
     TIconButton {

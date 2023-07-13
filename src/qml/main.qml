@@ -8,9 +8,18 @@ Window {
     visible: true
     width: 800; height: 800
     color: "#fafafa"
+
+    property var fake_data : [
+        {name: "底盘配置", uri: "ChassisPage.qml"},
+        {name: "定位感知", uri: "LocationPage.qml"},
+        {name: "安全防护", uri: "SecurityPage.qml"},
+        {name: "载具功能", uri: "VehiclePage.qml"},
+        {name: "人机交互", uri: "HCInteractionPage.qml"},
+        {name: "其他", uri: "OthersPage.qml"},
+    ];
     
     T2DWorld{
-        // mouseAreaCursorShape: Qt.PointingHandCursor
+        mouseAreaCursorShape: Qt.PointingHandCursor
         appStartupTheme: "None"
         // appThemePaths: [
         //     "qrc:/themes/"
@@ -19,12 +28,6 @@ Window {
 
     ListModel {
         id: wizard_model
-        ListElement {name: "底盘配置"}
-        ListElement {name: "定位感知"}
-        ListElement {name: "安全防护"}
-        ListElement {name: "载具功能"}
-        ListElement {name: "人机交互"}
-        ListElement {name: "其他"}
     }
     
     Wizard {
@@ -58,13 +61,6 @@ Window {
         }
     }
     
-    // ComboBox {
-    //     editable: true
-    //     model: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    //     width: 100; height: 30
-    //     anchors.centerIn: parent
-    // }
-    
     Loader {
         id: loader
         clip: true
@@ -76,6 +72,15 @@ Window {
             bottomMargin: 15
         }
         source: "ChassisPage.qml"
+        // source: "DynmicPage.qml"
+        
+        function toPage(uri, title){
+            source = uri;
+            console.log("toPage: " + uri)
+        }
+        Component.onCompleted: {
+            console.log("loader init fin")
+        }
     }
     
     TButton {
@@ -88,9 +93,10 @@ Window {
             margins: 15
         }
         onClicked: {
-            if(wizard.index !== wizard_model.count - 1)
+            if(wizard.index !== wizard_model.count - 1){
                 wizard.index += 1
-            console.log(content.current_index)
+                loader.toPage(fake_data[wizard.index].uri, "测试")
+            }
         }
     }
 
@@ -105,8 +111,10 @@ Window {
             margins: 15
         }
         onClicked: {
-            if(wizard.index !== 0)
+            if(wizard.index !== 0){
                 wizard.index -= 1
+                loader.toPage(fake_data[wizard.index].uri, "测试")
+            }
         }
     }
 
@@ -140,5 +148,14 @@ Window {
         ]
 
         onTriggered: hideAndClose();
+    }
+    
+    Component.onCompleted: {
+        // fake_data.forEach( d => {
+        //     wizard_model.append(d);
+        // });
+        for(var i = 0; i < fake_data.length; i++) {
+            wizard_model.append(fake_data[i]);
+        }
     }
 }

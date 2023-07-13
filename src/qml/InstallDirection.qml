@@ -3,18 +3,36 @@ import QtQuick.Controls 2.2
 import Toou2D 1.0
 
 TRectangle {
-    property int current_index: 0
-
-    implicitHeight: row.visible ? title_line.implicitHeight + row.height : title_line.implicitHeight
-    clip:true
-
-    ListModel {
-        id: check_model
-        ListElement { name: "纵向正装"; image_source: "../images/FRC5000纵向正装.png" }
-        ListElement { name: "横向正装"; image_source: "../images/FRC5000横向正装.png" }
-        ListElement { name: "水平正装"; image_source: "../images/FRC5000水平正装.png" }
-        ListElement { name: "纵向倒装"; image_source: "../images/FRC5000纵向倒装.png" }
+    id: root
+    property var model_data;
+    // property var fake_data: {
+    //     return {
+    //         value: "0", default_value: "1",
+    //         options: [
+    //             { desc: "纵向正装", source: "../images/FRC5000纵向正装.png" },
+    //             { desc: "横向正装", source: "../images/FRC5000横向正装.png" },
+    //             { desc: "水平正装", source: "../images/FRC5000水平正装.png" },
+    //             { desc: "纵向倒装", source: "../images/FRC5000纵向倒装.png" },
+    //             { desc: "纵向倒装", source: "../images/FRC5000纵向倒装.png" },
+    //             { desc: "纵向倒装", source: "../images/FRC5000纵向倒装.png" },
+    //             { desc: "纵向倒装", source: "../images/FRC5000纵向倒装.png" },
+    //         ]
+    //     }
+    // }
+    
+    function setCurrentIndex(index) {
+        if (radio_group.buttons.length > index){
+            radio_group.buttons[index].checked = true;
+        }
     }
+
+    function getCurrentIndex(){
+        return radio_group.checkedButton.index;
+    }
+
+    height: implicitHeight
+    implicitHeight: flickable.visible ? title_line.implicitHeight + flickable.height : title_line.implicitHeight
+    clip:true
 
     TitleLine {
         id: title_line
@@ -25,45 +43,58 @@ TRectangle {
         }
     }
     
-    ButtonGroup {
-        id: radio_group
-        onClicked: {
-            console.log("clicked " + button.text + " " + button.index)
-            current_index = button.index
-        }
-        Component.onCompleted: {
-            radio_group.buttons[0].checked = true
-        } 
-    }
-    
-    Component {
-        id: check_pic
-        Column {
-            spacing: 10
-            RadioButton {
-                property int index: model.index
-                text: model.name
-                ButtonGroup.group: radio_group
-            }
-            Image {
-                source: model.image_source
-                width: sourceSize.width / 4
-                height: sourceSize.height / 4
-            }
-        }
-    }
-    
-    Row {
-        id: row
+    ScrollView {
+        id: flickable
+        clip: true
+        visible: title_line.expanded
+        height: 200
+
         anchors {
             top: title_line.bottom
-            horizontalCenter: parent.horizontalCenter
+            left: parent.left
+            right: parent.right
+            leftMargin: 10
+            topMargin: 10
         }
-        spacing: 20
-        visible: title_line.expanded
-        Repeater {
-            model: check_model
-            delegate: check_pic
+        
+        ButtonGroup {
+            id: radio_group
+            onClicked: current_index = checkedButton.index
+        }
+
+        Grid {
+            id: gview
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+            }
+            spacing: 20
+            width: parent.width
+
+            Repeater {
+                model: root.model_data.options
+
+                delegate: Column{
+                    spacing: 10
+                    RadioButton{
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        property int index: model.index
+                        text: model.modelData.desc
+                        ButtonGroup.group: radio_group
+                    }
+                    TImage {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        source: modelData.source
+                        width: sourceSize.width / 4
+                        height: sourceSize.height / 4
+                    }
+                }
+            }
+        }
+    }
+    
+    Behavior on height {
+        NumberAnimation {
+            duration: 200
         }
     }
 }

@@ -1,14 +1,19 @@
 ﻿<RCC>
 <qresource prefix="/">
     <file>qml/main.qml</file>
+    <file>qml/ChassisPage.qml</file>
+    <file>qml/LocationPage.qml</file>
+    <file>qml/SecurityPage.qml</file>
+    <file>qml/VehiclePage.qml</file>
+    <file>qml/HCInteractionPage.qml</file>
+    <file>qml/OthersPage.qml</file>
     <file>qml/Wizard.qml</file>
     <file>qml/Searchbar.qml</file>
     <file>qml/TitleLine.qml</file>
-    <file>qml/ChassisPage.qml</file>
     <file>qml/ChassisStructure.qml</file>
     <file>qml/InstallDirection.qml</file>
-    <file>qml/DriverConfig.qml</file>
-    <file>qml/DynComponent.qml</file>
+    <file>qml/DynComponentA.qml</file>
+    <file>qml/DynmicPage.qml</file>
     <file>qml/dynamic_create.js</file>
     <file>images/1.png</file>
     <file>images/2.png</file>
