@@ -26,7 +26,9 @@ aux_source_directory(src- SRC)
 
 add_library(${OUTPUT_NAME} SHARED ${SRC} ${QRC_FILES})
 
-target_link_libraries(${OUTPUT_NAME} PRIVATE Qt5::Gui Qt5::Quick)
+target_include_directories(${OUTPUT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_directories(${OUTPUT_NAME} PUBLIC lib)
+target_link_libraries(${OUTPUT_NAME} PRIVATE Qt5::Gui Qt5::Quick quickfluxd)
 
 #############################################
 aux_source_directory(test TEST_SRC)

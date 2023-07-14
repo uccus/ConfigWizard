@@ -2,6 +2,7 @@
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.2
 import Toou2D 1.0
+import QuickFlux 1.1
 
 Window {
     id: root
@@ -24,6 +25,9 @@ Window {
         // appThemePaths: [
         //     "qrc:/themes/"
         // ]
+    }
+
+    MiddlewareList {
     }
 
     ListModel {
@@ -72,7 +76,9 @@ Window {
             bottomMargin: 15
         }
         source: "ChassisPage.qml"
-        // source: "DynmicPage.qml"
+        asynchronous: true
+        onStatusChanged: bi.visible = status !==Loader.Ready
+        // source: "VehiclePage.qml"
         
         function toPage(uri, title){
             source = uri;
@@ -150,6 +156,11 @@ Window {
         onTriggered: hideAndClose();
     }
     
+    TBusyIndicator{
+        id:bi;
+        anchors.centerIn: parent;
+    }
+
     Component.onCompleted: {
         // fake_data.forEach( d => {
         //     wizard_model.append(d);

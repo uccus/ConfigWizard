@@ -21,6 +21,7 @@ TRectangle {
         TImage {
             id: img
             source: "../images/3.png"
+            fillMode: Image.PreserveAspectFit
             anchors {
                 // top: title_line.bottom
                 horizontalCenter: parent.horizontalCenter
