@@ -1,5 +1,6 @@
 ﻿import QtQuick 2.7
 import Toou2D 1.0
+import "../components"
 
 Item {
     property var fake_data : [

@@ -21,7 +21,7 @@ Item {
     property bool hasChild: false
 
     implicitWidth: title_line.width
-    implicitHeight: rect.visible ? title_line.height + rect.height + 10 : title_line.height
+    implicitHeight: title_line.height + rect.height + 10
     width: implicitWidth; height: implicitHeight
 
     TitleLine {
@@ -38,8 +38,7 @@ Item {
         id: rect
         clip:true
         color: "#fafafa"
-        height: Math.max(content.height + option.height, img.height) + 10
-        visible: title_line.expanded
+        height: title_line.expanded ? Math.max(content.height + option.height, img.height) + 10 : 0
         anchors {
             left: parent.left
             right: parent.right
@@ -99,11 +98,11 @@ Item {
                 }
             }
         }
-    }
-
-    Behavior on height {
-        NumberAnimation {
-            duration: 200
+        Behavior on height {
+            NumberAnimation {
+                duration: 200
+            }
         }
     }
+
 }

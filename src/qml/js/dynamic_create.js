@@ -28,7 +28,9 @@ function createCombox(parent) {
     var obj = Qt.createQmlObject(
         "import QtQuick 2.0" + "\n" +
         "import QtQuick.Controls 2.2" + "\n" +
+        "import \"../actions\"" + "\n" +
         "ComboBox {" + "\n" +
+            "onActivated: AppActions.comboxIndexChanged(this)"+ "\n" +
         "}"
         ,
         parent,
@@ -49,6 +51,36 @@ function createLineEdit(parent) {
         parent,
         "dyn_create_obj"
     );
+    
+    return obj;
+}
+
+function createIntValidator(min, max) {
+    var obj = Qt.createQmlObject(
+        "import QtQuick 2.0" + "\n" +
+        "IntValidator {" + "\n" +
+        "}"
+        ,
+        parent,
+        "dyn_create_obj"
+    );
+    obj.bottom = min;
+    obj.top = max;
+    
+    return obj;
+}
+
+function createFloatValidator(min, max) {
+    var obj = Qt.createQmlObject(
+        "import QtQuick 2.0" + "\n" +
+        "DoubleValidator {" + "\n" +
+        "}"
+        ,
+        parent,
+        "dyn_create_obj"
+    );
+    obj.bottom = min;
+    obj.top = max;
     
     return obj;
 }

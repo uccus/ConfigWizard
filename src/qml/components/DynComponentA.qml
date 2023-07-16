@@ -1,6 +1,6 @@
 ﻿import QtQuick 2.0;
 import Toou2D 1.0
-import "dynamic_create.js" as Dyn
+import "../js/dynamic_create.js" as Dyn
 
 /*
     这个动态组件目前仅支持 Label + 下拉框/编辑框的形式
@@ -31,11 +31,6 @@ Component {
                 }
                 if (model.modelData.show_type == "combox"){
                     obj = Dyn.createCombox(root);
-                    // obj.model = model.modelData.combox_value;
-                    // var arr = [];
-                    // for (var i = 0; i < model.modelData.combox_value.length; i++) {
-                    //     arr.append(model.modelData.combox_value[i].desc);
-                    // }
                     var result = model.modelData.combox_value.map(function(a) {return a.desc;});
                     var current_index = Dyn.findIndexByField(model.modelData.combox_value, "value", model.modelData.value);
                     obj.model = result;
@@ -46,7 +41,10 @@ Component {
                     obj = Dyn.createLineEdit(root);
                     obj.width = 150;
                     obj.text = model.modelData.value;
-                    // TODO... 限制器
+                    if (model.modelData.data_type === "int" || model.modelData.data_type === "uint")
+                        obj.validator = Dyn.createIntValidator(model.modelData.min, model.modelData.max);
+                    else if (model.modelData.data_type === "float")
+                        obj.validator = Dyn.createFloatValidator(model.modelData.min, model.modelData.max);
                 }
             }
         }

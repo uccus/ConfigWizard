@@ -2,12 +2,11 @@
 import Toou2D 1.0
 
 TRectangle {
+    id: root
     property alias text: txt.text
     property bool expanded: true
 
-    id: root
     implicitHeight: txt.implicitHeight + 15
-    // height: txt.implicitHeight + 15
     width: parent.width
 
     TIconButton {
