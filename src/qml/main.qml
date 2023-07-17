@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.0
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.13
+import QtQuick.Layouts 1.3
 import Toou2D 1.0
 import QuickFlux 1.1
 import "./pages"
@@ -17,42 +17,57 @@ Window {
     color: "#fafafa"
 
     T2DWorld{ mouseAreaCursorShape: Qt.PointingHandCursor }
+
     MiddlewareList {
         applyTarget: AppActions
-        ChassisDynmicPageMiddleware{
-            
-        }
+
+        SearchResultMiddleware {}
+        NavigationMiddleware {stack: stack}
+        ChassisDynmicPageMiddleware{}
+        LocationDynmicPageMiddleware{}
+        SecurityDynmicPageMiddleware{}
+        VehicleDynmicPageMiddleware{}
+        HCInteractionDynmicPageMiddleware{}
+        BusyIndicatorMiddleware {bi: bi}
     }
 
-    RowLayout {
-        anchors.fill: parent
+    Component {
+        id: main
+        RowLayout {
+            anchors.fill: parent
 
-        WizardPage {
-            id: wizard
-            width: 150
-            
-            Layout.fillHeight: true
-        }
-
-        ColumnLayout {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.rightMargin: 15
-            spacing: 10
-            
-            Searchbar {
-                Layout.alignment: Qt.AlignRight
-            }
-
-            ContentPage {
-                Layout.fillWidth: true
+            WizardPage {
+                id: wizard
+                width: 150
                 Layout.fillHeight: true
             }
+
+            ColumnLayout {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.rightMargin: 15
+                spacing: 10
             
-            Footer {
-                Layout.alignment: Qt.AlignRight
+                Searchbar {
+                    Layout.alignment: Qt.AlignRight
+                }
+
+                ContentPage {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                }
+            
+                Footer {
+                    Layout.alignment: Qt.AlignRight
+                }
             }
         }
+    }
+    
+    StackView {
+        id: stack
+        anchors.fill: parent
+        initialItem: main
     }
 
     // TDialog{
@@ -70,9 +85,10 @@ Window {
 
     //     onTriggered: hideAndClose();
     // }
-    
-    // TBusyIndicator{
-    //     id:bi;
-    //     anchors.centerIn: parent;
-    // }
+
+    TBusyIndicator{
+        id:bi;
+        visible: true
+        anchors.centerIn: parent;
+    }
 }

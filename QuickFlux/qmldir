@@ -1,4 +1,0 @@
-﻿module QuickFlux
-plugin QuickFlux
-classname QuickFluxQmlPlugin
-typeinfo plugin.qmltypes

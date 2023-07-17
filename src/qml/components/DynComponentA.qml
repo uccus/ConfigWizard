@@ -13,39 +13,46 @@ import "../js/dynamic_create.js" as Dyn
         { name: "fff", desc: "减速比", show_type: "lineEdit", value: "1", default_value: "20", min: 0, max: 10 },
     ]
 */
-Component {
-    TRectangle {
-        width: root.width
-        height: root.height;
-        Row{
-            id: root
-            spacing: 10
 
-            Component.onCompleted: {
-                var obj = Dyn.createLabel(root);
-                obj.text = model.modelData.desc;
-                
-                // 如果实际值为空, 则用默认值
-                if (model.modelData.value === "") {
-                    model.modelData.value = model.modelData.default_value;
-                }
-                if (model.modelData.show_type == "combox"){
-                    obj = Dyn.createCombox(root);
-                    var result = model.modelData.combox_value.map(function(a) {return a.desc;});
-                    var current_index = Dyn.findIndexByField(model.modelData.combox_value, "value", model.modelData.value);
-                    obj.model = result;
-                    obj.currentIndex = current_index;
-                    obj.width = 150;
-                }
-                else if (model.modelData.show_type == "lineEdit"){
-                    obj = Dyn.createLineEdit(root);
-                    obj.width = 150;
-                    obj.text = model.modelData.value;
-                    if (model.modelData.data_type === "int" || model.modelData.data_type === "uint")
-                        obj.validator = Dyn.createIntValidator(model.modelData.min, model.modelData.max);
-                    else if (model.modelData.data_type === "float")
-                        obj.validator = Dyn.createFloatValidator(model.modelData.min, model.modelData.max);
-                }
+TRectangle {
+    id: com
+    property string module_name: "";
+
+    width: root.width
+    height: root.height;
+    Row{
+        id: root
+        spacing: 10
+
+        Component.onCompleted: {
+            var obj = Dyn.createLabel(root);
+            obj.text = model.modelData.desc;
+            
+            // 如果实际值为空, 则用默认值
+            if (model.modelData.value === "") {
+                model.modelData.value = model.modelData.default_value;
+            }
+            if (model.modelData.show_type == "combox"){
+                obj = Dyn.createCombox(root);
+                var result = model.modelData.combox_value.map(function(a) {return a.desc;});
+                var index = Dyn.findIndexByValue(model.modelData.combox_value, "value", model.modelData.value);
+                obj.model = result;
+                obj.comboxValue = model.modelData.combox_value;
+                obj.module_name = com.module_name;
+                obj.name = model.modelData.name;
+                obj.currentIndex = index;
+                obj.width = 150;
+            }
+            else if (model.modelData.show_type == "lineEdit"){
+                obj = Dyn.createLineEdit(root);
+                obj.width = 150;
+                obj.module_name = com.module_name
+                obj.name = model.modelData.name
+                obj.text = model.modelData.value;
+                if (model.modelData.data_type === "int" || model.modelData.data_type === "uint")
+                    obj.validator = Dyn.createIntValidator(model.modelData.min, model.modelData.max);
+                else if (model.modelData.data_type === "float")
+                    obj.validator = Dyn.createFloatValidator(model.modelData.min, model.modelData.max);
             }
         }
     }

@@ -21,8 +21,10 @@ Middleware {
                 }
 
                 title: modelData.title
-                module_name: modelData.module_name                
+                module_name: modelData.module_name
                 model_data: modelData.model
+                has_child: modelData.has_child
+                child_model_data: modelData.child_model_data
                 imgSource: modelData.image.source
                 imgWidth: modelData.image.width
                 imgHeight: modelData.image.height
@@ -33,10 +35,10 @@ Middleware {
     Binding {
         target: content
         property: "model"
-        value: MainStore.chassis.dynmic_data.data
+        value: MainStore.vehicle.data
     }
 
-    function loadChassisDynmicPage(message) {
+    function loadVehicleDynmicPage(message) {
         content.width = message.parent.width
         content.parent = message.parent
     }

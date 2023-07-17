@@ -33,10 +33,10 @@ Middleware {
     Binding {
         target: content
         property: "model"
-        value: MainStore.chassis.dynmic_data.data
+        value: MainStore.location.data
     }
 
-    function loadChassisDynmicPage(message) {
+    function loadLocationDynmicPage(message) {
         content.width = message.parent.width
         content.parent = message.parent
     }

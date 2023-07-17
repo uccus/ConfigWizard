@@ -1,13 +1,16 @@
 ﻿import QtQuick 2.7
 import Toou2D 1.0
+import "../components"
 
 Item {
     id: root
     clip: true
     // 标题
     property alias title: title_line.text
+    // 模块内部键
+    property string module_name
     // 数据项
-    property var model_data : []
+    property alias model_data : content.model
     // 子数据项
     property var child_model_data : []
     // 图片
@@ -18,8 +21,8 @@ Item {
     property alias blankWidth: blank.width
     property alias blankHeight: blank.height
     // 子控件
-    property bool hasChild: false
-
+    property bool has_child: false
+    
     implicitWidth: title_line.width
     implicitHeight: title_line.height + rect.height + 10
     width: implicitWidth; height: implicitHeight
@@ -46,13 +49,17 @@ Item {
             margins: 10
         }
 
+        // TODO...位置
         Column{
             id: content
+            property alias model: r.model
             spacing: 10
             
             Repeater {
-                model: model_data
-                delegate: DynComponentA{}
+                id: r
+                delegate: DynComponentA{
+                    module_name: root.module_name
+                }
             }
         }
         
@@ -77,7 +84,7 @@ Item {
         // 可选
         Column {
             id: option
-            visible: root.hasChild
+            visible: root.has_child
             leftPadding: 10
             anchors {
                 top: content.bottom
@@ -91,9 +98,10 @@ Item {
                         var model = root.child_model_data[i];
                         var tmp = Qt.createComponent("DynmicPage.qml");
                         var obj = tmp.createObject(option);
-                        obj.width = 300;
-                        obj.title = model.label;
-                        obj.model_data = model.model_data;
+                        obj.width = 280;
+                        obj.module_name = model.module_name
+                        obj.title = model.title;
+                        obj.model_data = model.model;
                     }
                 }
             }

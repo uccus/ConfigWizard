@@ -1,5 +1,5 @@
 ﻿import QtQuick 2.0
-import QtQuick.Layouts 1.14
+import QtQuick.Layouts 1.3
 import Toou2D 1.0
 import "../stores"
 

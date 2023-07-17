@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.0
 import Toou2D 1.0
 import "../stores"
+import "../actions"
 
 Item {
     Loader {
@@ -8,8 +9,7 @@ Item {
         clip: true
         anchors.fill: parent
         source: MainStore.wizard.source
-        // source: "ChassisPage.qml"
         asynchronous: true
-        // onStatusChanged: bi.visible = status !==Loader.Ready
+        onStatusChanged: AppActions.showBusy(status !== Loader.Ready)
     }
 }

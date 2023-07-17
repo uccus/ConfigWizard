@@ -1,25 +1,53 @@
 ﻿<RCC>
 <qresource prefix="/">
     <file>qml/main.qml</file>
-    <file>qml/pages/WizardPage.qml</file>
+    <file>qml/pages/ChassisPage.qml</file>
     <file>qml/pages/ContentPage.qml</file>
+    <file>qml/pages/DynmicPage.qml</file>
     <file>qml/pages/Footer.qml</file>
+    <file>qml/pages/HCInteractionPage.qml</file>
+    <file>qml/pages/LocationPage.qml</file>
+    <file>qml/pages/OthersPage.qml</file>
+    <file>qml/pages/SecurityPage.qml</file>
+    <file>qml/pages/VehiclePage.qml</file>
+    <file>qml/pages/WizardPage.qml</file>
+    <file>qml/pages/SearchResultPage.qml</file>
+
+    <file>qml/stores/qmldir</file>
+    <file>qml/stores/ChassisDynmicStore.qml</file>
+    <file>qml/stores/ChassisStore.qml</file>
+    <file>qml/stores/HCInteractionDynmicStore.qml</file>
+    <file>qml/stores/InstallDirectionStore.qml</file>
+    <file>qml/stores/LocationDynmicStore.qml</file>
     <file>qml/stores/MainStore.qml</file>
     <file>qml/stores/RootStore.qml</file>
+    <file>qml/stores/SecurityDynmicStore.qml</file>
+    <file>qml/stores/VehicleDynmicStore.qml</file>
     <file>qml/stores/WizardStore.qml</file>
+    <file>qml/stores/SearchResultStore.qml</file>
+
+    <file>qml/components/ChassisStructure.qml</file>
+    <file>qml/components/DynComponentA.qml</file>
+    <file>qml/components/InstallDirection.qml</file>
+    <file>qml/components/InstallDirectionItem.qml</file>
     <file>qml/components/Searchbar.qml</file>
-    <file>qml/ChassisPage.qml</file>
-    <file>qml/LocationPage.qml</file>
-    <file>qml/SecurityPage.qml</file>
-    <file>qml/VehiclePage.qml</file>
-    <file>qml/HCInteractionPage.qml</file>
-    <file>qml/OthersPage.qml</file>
-    <file>qml/TitleLine.qml</file>
-    <file>qml/ChassisStructure.qml</file>
-    <file>qml/InstallDirection.qml</file>
-    <file>qml/DynComponentA.qml</file>
-    <file>qml/DynmicPage.qml</file>
-    <file>qml/dynamic_create.js</file>
+    <file>qml/components/TitleLine.qml</file>
+
+    <file>qml/actions/qmldir</file>
+    <file>qml/actions/ActionTypes.qml</file>
+    <file>qml/actions/AppActions.qml</file>
+
+    <file>qml/middlewares/BusyIndicatorMiddleware.qml</file>
+    <file>qml/middlewares/ChassisDynmicPageMiddleware.qml</file>
+    <file>qml/middlewares/HCInteractionDynmicPageMiddleware.qml</file>
+    <file>qml/middlewares/LocationDynmicPageMiddleware.qml</file>
+    <file>qml/middlewares/SecurityDynmicPageMiddleware.qml</file>
+    <file>qml/middlewares/VehicleDynmicPageMiddleware.qml</file>
+    <file>qml/middlewares/NavigationMiddleware.qml</file>
+    <file>qml/middlewares/SearchResultMiddleware.qml</file>
+
+    <file>qml/js/dynamic_create.js</file>
+
     <file>images/1.png</file>
     <file>images/2.png</file>
     <file>images/3.png</file>

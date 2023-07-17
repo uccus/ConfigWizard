@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.0
 import QuickFlux 1.1
 import "../actions"
+import "."
 
 Store {
     property int current_index: 0
@@ -21,5 +22,17 @@ Store {
     Filter {
         type: ActionTypes.updateInstallDirection
         onDispatched: current_index = message.index
+    }
+    
+    function searchOther(keyword) {
+        MainStore.search.chassis_install_direction_visible = 
+            title.toLowerCase().includes(keyword.toLowerCase());
+            
+        for (var i = 0; i < model.count; i++) {
+            if (model.get(i).desc.toLowerCase().includes(keyword.toLowerCase())) {
+                MainStore.search.chassis_install_direction_visible = true;
+                break;
+            }
+        }
     }
 }
