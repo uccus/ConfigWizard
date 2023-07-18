@@ -14,6 +14,7 @@ Window {
     id: root
     visible: true
     width: 800; height: 800
+    minimumWidth: 600
     color: "#fafafa"
 
     T2DWorld{ mouseAreaCursorShape: Qt.PointingHandCursor }
@@ -48,9 +49,9 @@ Window {
                 Layout.rightMargin: 15
                 spacing: 10
             
-                Searchbar {
-                    Layout.alignment: Qt.AlignRight
-                }
+                // Searchbar {
+                //     Layout.alignment: Qt.AlignRight
+                // }
 
                 ContentPage {
                     Layout.fillWidth: true

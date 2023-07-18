@@ -7,6 +7,8 @@ ActionCreator {
     signal toPrevPage();
     // 下一步
     signal toNextPage();
+    // 去到指定向导页面
+    signal toNextWizardPage(int index);
     // 页面加载状态改变
     signal loaderStatusChanged(int status);
     // 显示等待框

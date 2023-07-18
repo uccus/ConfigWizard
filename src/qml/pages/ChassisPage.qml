@@ -22,15 +22,15 @@ Item {
             
             anchors.horizontalCenter: parent.horizontalCenter
 
-            ChassisStructure{
-                id: chassis_structure
-                Layout.fillWidth: true
-            }
+            // ChassisStructure{
+            //     id: chassis_structure
+            //     Layout.fillWidth: true
+            // }
 
-            InstallDirection {
-                id: install_direction
-                Layout.fillWidth: true
-            }
+            // InstallDirection {
+            //     id: install_direction
+            //     Layout.fillWidth: true
+            // }
             
             Component.onCompleted: {
                 AppActions.loadChassisDynmicPage(layout);

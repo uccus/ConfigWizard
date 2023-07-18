@@ -14,7 +14,7 @@ Middleware {
         spacing: 10
         Repeater {
             id: dyn_page
-            delegate: DynmicPage{
+            delegate: DynmicPage {
                 anchors {
                     left: parent.left
                     right: parent.right

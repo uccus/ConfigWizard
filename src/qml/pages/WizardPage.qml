@@ -2,6 +2,7 @@
 import QtQuick.Layouts 1.3
 import Toou2D 1.0
 import "../stores"
+import "../actions"
 
 Rectangle {
     id: root
@@ -25,21 +26,18 @@ Rectangle {
             clip: true
             color: "#f2f2f2"
 
-            TRectangle{
+            TButton {
                 id: rect
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: 60
-                radius: 2
-                color: model.index == MainStore.wizard.current_index ? "#1e98d7" : "#ffffff"
-                TLabel{
-                    anchors.centerIn: parent
-                    text: model.name
-                    font.pixelSize: TPixelSizePreset.PH2;
-                    color: model.index == MainStore.wizard.current_index ? "white" : "black"
-                }
+                background.color: model.index == MainStore.wizard.current_index ? "#1e98d7" : "#ffffff"
+                label.text: model.desc
+                label.font.pixelSize: TPixelSizePreset.PH2
+                label.color: model.index == MainStore.wizard.current_index ? "#fefefe" : "black"
+                onClicked: AppActions.toNextWizardPage(model.index);
             }
             
             TImage{
