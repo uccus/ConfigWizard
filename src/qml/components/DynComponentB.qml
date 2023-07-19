@@ -1,5 +1,5 @@
 ﻿import QtQuick 2.7
-import QtQuick.Controls 2.7
+import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import Toou2D 1.0
 
@@ -10,6 +10,8 @@ Item {
     width: 180
     height: 40
 
+    // 当前编辑项属于哪个模块
+    property string module_name: ""
     // property var itemModel: model
     property var itemModel: model.modelData
 
@@ -37,7 +39,8 @@ Item {
                 return visible ? itemModel.combox_value.map(function(a) {return a.desc;}) : [];
             }
             visible: itemModel.show_type === "combox"
-            currentIndex: 2
+            // currentIndex: itemModel.value
+            // TODO: 字段值的查询和更新
         }
         
         TInputField {
@@ -45,6 +48,7 @@ Item {
             height: 30
             text: itemModel.value
             visible: itemModel.show_type === "input"
+            // TODO: 字段值的查询和更新
         }
     }
 }

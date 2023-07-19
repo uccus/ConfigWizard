@@ -22,13 +22,13 @@ Window {
     MiddlewareList {
         applyTarget: AppActions
 
-        SearchResultMiddleware {}
-        NavigationMiddleware {stack: stack}
-        ChassisDynmicPageMiddleware{}
-        LocationDynmicPageMiddleware{}
-        SecurityDynmicPageMiddleware{}
-        VehicleDynmicPageMiddleware{}
-        HCInteractionDynmicPageMiddleware{}
+        // SearchResultMiddleware {}
+        // NavigationMiddleware {stack: stack}
+        // ChassisDynmicPageMiddleware{}
+        // LocationDynmicPageMiddleware{}
+        // SecurityDynmicPageMiddleware{}
+        // VehicleDynmicPageMiddleware{}
+        // HCInteractionDynmicPageMiddleware{}
         BusyIndicatorMiddleware {bi: bi}
     }
 
@@ -52,7 +52,7 @@ Window {
                 // Searchbar {
                 //     Layout.alignment: Qt.AlignRight
                 // }
-
+                
                 ContentPage {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
@@ -92,4 +92,9 @@ Window {
         visible: true
         anchors.centerIn: parent;
     }
+    
+    // Component.onCompleted: {
+    //     console.log(_test_ui_data);
+    //     MainStore.ui_data = JSON.parse("{\"name\": \"chassis\", 	\"model\": [{ 		\"module_name\": \"chassis_base\", 		\"title\": \"chassis base\", 		\"image\": { 			\"source\": \"../../images/3.png\", 			\"width\": 300, 			\"height\": 150 		}, 		\"description\": \"1231213\" 	}] }");
+    // }
 }

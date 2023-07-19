@@ -1,5 +1,5 @@
 ﻿import QtQuick 2.7
-import QtQuick.Controls 2.7
+import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import Toou2D 1.0
 
@@ -7,31 +7,72 @@ import Toou2D 1.0
     动态图片或文字或啥也没有
 */
 Rectangle {
-    // 显示类型
-    property string type: "image"   //  也可以是"text"
     // 图片
     property alias imgSource: img.source
     property alias imgWidth: img.width
     property alias imgHeight: img.height
     // 文字描述
-    property alias description: desc.text
+    property var description: ""
     
-    implicitHeight: Math.max(img.height, desc.height)
-    height: implicitHeight
+    // implicitHeight: Math.max(img.height, desc.height)
+    implicitHeight: imgHeight + desc.height + 5
+    implicitWidth: visible ? 300 : 0
+    
+    // implicitHeight: imgHeight 
+    // implicitHeight: 500
+    // height: implicitHeight
     color: "#fafafa"
+    visible: desc.visible || img.visible
 
-    TImage {
-        id: img
-        visible: type === "image"
-        fillMode: Image.PreserveAspectFit
-        anchors.centerIn: parent
+    ColumnLayout {
+    // Column {
+        id: col
+        spacing: 5
+        anchors.fill: parent
+
+        TLabel {
+            id: desc
+            text: "    " + description
+            // width: parent.width
+            wrapMode: Text.WordWrap
+            visible: description !== ""
+            Layout.fillWidth: true
+            Layout.rightMargin: 20
+            Layout.preferredWidth: 200
+
+            // anchors {
+            //     left: parent.left
+            //     right: parent.right
+            //     // horizontalCenter: parent.horizontalCenter
+            //     // centerIn: parent
+            // }
+        }
+        TImage {
+            id: img
+            asynchronous: true
+            fillMode: Image.PreserveAspectFit
+            visible: status === Image.Ready
+
+            Layout.rightMargin: 20
+            Layout.preferredHeight: sourceSize.height * imgWidth / sourceSize.width
+            Layout.preferredWidth: imgWidth
+            Layout.maximumWidth: imgWidth
+            Layout.alignment: Qt.AlignHCenter
+
+            // anchors {
+            //     // left: parent.left
+            //     // right: parent.right
+            //     // horizontalCenter: parent.horizontalCenter
+            //     fill: parent
+            //     rightMargin: 20
+            // }
+            Component.onCompleted: {
+                // console.log("image", width, height, imgWidth, imgHeight)
+            }
+        }
     }
-    TLabel {
-        id: desc
-        text: "    " + "这是一长串的描述;这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述"
-        width: parent.width
-        wrapMode: Text.WordWrap
-        visible: type === "text"
-        anchors.centerIn: parent
+    
+    Component.onCompleted: {
+        // console.log("dyn content b", width, height)
     }
 }

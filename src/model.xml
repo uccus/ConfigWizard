@@ -1,0 +1,63 @@
+<Window>
+    <Module name="chassis" desc="底盘配置">
+        <Sub name="chassis_structrue" desc="底盘结构" show_type="" >
+        </Sub>
+        <Sub name="install_direction" desc="控制器安装朝向" show_type="radio_group" default_value="0">
+            <radio value="0" desc="纵向正装" image="FRC5000纵向正装.png"/>
+            <radio value="1" desc="横向正装" image="FRC5000横向正装.png"/>
+            <radio value="2" desc="水平正装" image="FRC5000水平正装.png"/>
+            <radio value="3" desc="纵向倒装" image="FRC5000纵向倒装.png"/>
+        </Sub>
+        <Sub name="left_driver" desc="左轮驱动器配置" image="4.png">
+            <param name="brand" desc="品牌" show_type="combox" default_value="Kinco_FD">
+                <combox value="Kinco_FD" desc="Kinco_FD"/>
+                <combox value="Syntron_LS" desc="Syntron_LS"/>
+                <combox value="Syntron_DS" desc="Syntron_DS"/>
+                <combox value="Kecong_MRD" desc="Kecong_MRD"/>
+            </param>
+            <param name="comm_no" desc="通讯站号" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="reduce_ratio" desc="减速比" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="resolution" desc="分辨率" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="wheel_d" desc="轮直径(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="rotate_speed" desc="最高转速(rpm)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="reverse" desc="是否反向" show_type="combox">
+                <combox value="0" desc="是"/>
+                <combox value="1" desc="否"/>
+            </param>
+        </Sub>
+        <Sub name="right_driver" desc="右轮驱动器配置" image="4.png">
+            <param name="brand" desc="品牌" show_type="combox" default_value="">
+                <combox value="Kinco_FD" desc="Kinco_FD"/>
+                <combox value="Syntron_LS" desc="Syntron_LS"/>
+                <combox value="Syntron_DS" desc="Syntron_DS"/>
+                <combox value="Kecong_MRD" desc="Kecong_MRD"/>
+            </param>
+            <param name="comm_no" desc="通讯站号" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="reduce_ratio" desc="减速比" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="resolution" desc="分辨率" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="wheel_d" desc="轮直径(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="rotate_speed" desc="最高转速(rpm)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="reverse" desc="是否反向" show_type="combox">
+                <combox value="0" desc="是"/>
+                <combox value="1" desc="否"/>
+            </param>
+        </Sub>
+    </Module>
+    <Module name="location" desc="定位感知">
+        <Sub name="bottom_camera" desc="底部二维码相机" image="7.png">
+            <param name="enable" desc="是否启用" show_type="combox" default_value="0">
+                <combox value="0" desc="是"/>
+                <combox value="1" desc="否"/>
+            </param>
+            <param name="model" desc="型号" show_type="combox" default_value="R3188">
+                <combox value="R3188" desc="iPAYPLE_R3188"/>
+                <combox value="PGV100" desc="P+F_PGV100"/>
+            </param>
+            <param name="comm_no" desc="通讯站号" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="install_x" desc="安装位置X(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="install_y" desc="安装位置Y(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="install_degree" desc="安装角度(°)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="others" desc="其他参数" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+        </Sub>
+    </Module>
+</Window>
