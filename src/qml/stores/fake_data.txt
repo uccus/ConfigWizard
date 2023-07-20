@@ -1,0 +1,207 @@
+﻿// fake_data
+// 这里是qml内部使用的model数据格式
+property var ui_data1: [
+    {name: "chassis", model: [
+        {
+            module_name: "chassis_base",
+            title: qsTr("底盘结构"),
+            // image: {
+            //     source: "../../images/3.png",
+            //     width: 300,
+            //     height: 150
+            // },
+            // description: qsTr("这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述"),
+            radio_model: [
+                {
+                    default_value: "test", 
+                    radio_value: [
+                        {value: "test", desc: "横向", image: "../../images/3.png"},
+                        {value: "test2", desc: "纵向", image: "../../images/4.png"},
+                        {value: "test2", desc: "纵向", image: "../../images/4.png"},
+                        {value: "test2", desc: "纵向", image: "../../images/4.png"},
+                        {value: "test2", desc: "纵向", image: "../../images/4.png"},
+                        {value: "test2", desc: "纵向", image: "../../images/4.png"},
+                    ]
+                }
+            ]
+        },
+        {
+            module_name: "bottomCamera",
+            title: qsTr("顶升机构"),
+            image: {
+                source: "../../images/3.png",
+                width: 300,
+                height: 300
+            },
+            description: qsTr("这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述"),
+            model: [
+                { name: "brand", desc: "品牌", show_type: "combox", value: "2", default_value: "1", 
+                    combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                { name: "ccno", desc: "通讯站号", show_type: "combox", value: "3", default_value: "1", 
+                    combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                { name: "fff", desc: "减速比", show_type: "input", value: "测试", default_value: "20", min: 0, max: 10 },
+            ],
+            child_model_data: [
+                {
+                    module_name: "123",
+                    title: qsTr("下限位开关"),
+                    description: "这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述",
+                    model: [
+                        { name: "brand", desc: "品牌", show_type: "combox", value: "2", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                        { name: "ccno", desc: "通讯站号", show_type: "combox", value: "3", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                    ]
+                },
+                { 
+                    module_name: "456",
+                    title: qsTr("驱动器"),
+                    description: "这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述",
+                    model: [
+                        { name: "brand", desc: "品牌", show_type: "combox", value: "2", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                        { name: "ccno", desc: "通讯站号", show_type: "combox", value: "3", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                        { name: "fff", desc: "减速比", show_type: "input", value: "1", default_value: "20", min: 0, max: 10 },
+                    ]
+                }
+            ]
+        },
+        {
+            module_name: "bottomCamera123",
+            title: qsTr("顶升机构2"),
+            description: qsTr("这里是顶升机构2"),
+            // image: {
+            //     source: "../../images/3.png",
+            //     width: 300,
+            //     height: 300
+            // },
+            model: [
+                { name: "brand", desc: "品牌", show_type: "combox", value: "2", default_value: "1", 
+                    combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                { name: "ccno", desc: "通讯站号", show_type: "combox", value: "3", default_value: "1", 
+                    combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                { name: "fff", desc: "减速比", show_type: "input", value: "测试", default_value: "20", min: 0, max: 10 },
+            ],
+            has_child: true,
+            child_model_data: [
+                {
+                    module_name: "123",
+                    title: qsTr("下限位开关"),
+                    // description: "这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述",
+                    image: {
+                        source: "../../images/4.png"
+                    },
+                    model: [
+                        { name: "brand", desc: "品牌", show_type: "combox", value: "2", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                        { name: "ccno", desc: "通讯站号", show_type: "combox", value: "3", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                    ]
+                },
+                { 
+                    module_name: "456",
+                    title: qsTr("驱动器"),
+                    description: "这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述",
+                    model: [
+                        { name: "brand", desc: "品牌", show_type: "combox", value: "2", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                        { name: "ccno", desc: "通讯站号", show_type: "combox", value: "3", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                        { name: "fff", desc: "减速比", show_type: "input", value: "1", default_value: "20", min: 0, max: 10 },
+                    ]
+                }
+            ]
+        },
+    ]},
+    {name: "location", model: [
+        {
+            module_name: "bottomCamera",
+            title: qsTr("顶升机构"),
+            image: {
+                source: "../../images/3.png",
+                width: 300,
+                height: 300
+            },
+            model: [
+                { name: "brand", desc: "品牌", show_type: "combox", value: "2", default_value: "1", 
+                    combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                { name: "ccno", desc: "通讯站号", show_type: "combox", value: "3", default_value: "1", 
+                    combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                { name: "fff", desc: "减速比", show_type: "input", value: "测试", default_value: "20", min: 0, max: 10 },
+            ],
+            has_child: true,
+            child_model_data: [
+                {
+                    module_name: "123",
+                    title: qsTr("下限位开关"),
+                    description: "这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述",
+                    model: [
+                        { name: "brand", desc: "品牌", show_type: "combox", value: "2", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                        { name: "ccno", desc: "通讯站号", show_type: "combox", value: "3", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                    ]
+                },
+                { 
+                    module_name: "456",
+                    title: qsTr("驱动器"),
+                    description: "这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述",
+                    model: [
+                        { name: "brand", desc: "品牌", show_type: "combox", value: "2", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                        { name: "ccno", desc: "通讯站号", show_type: "combox", value: "3", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                        { name: "fff", desc: "减速比", show_type: "input", value: "1", default_value: "20", min: 0, max: 10 },
+                    ]
+                }
+            ]
+        },
+        {
+            module_name: "bottomCamera123",
+            title: qsTr("顶升机构2"),
+            description: qsTr("这里是顶升机构2"),
+            // image: {
+            //     source: "../../images/3.png",
+            //     width: 300,
+            //     height: 300
+            // },
+            model: [
+                { name: "brand", desc: "品牌", show_type: "combox", value: "2", default_value: "1", 
+                    combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                { name: "ccno", desc: "通讯站号", show_type: "combox", value: "3", default_value: "1", 
+                    combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                { name: "fff", desc: "减速比", show_type: "input", value: "测试", default_value: "20", min: 0, max: 10 },
+            ],
+            has_child: true,
+            child_model_data: [
+                {
+                    module_name: "123",
+                    title: qsTr("下限位开关"),
+                    // description: "这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述",
+                    // image: {
+                    //     source: "../../images/4.png"
+                    // },
+                    model: [
+                        { name: "brand", desc: "品牌", show_type: "combox", value: "2", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                        { name: "ccno", desc: "通讯站号", show_type: "combox", value: "3", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                    ]
+                },
+                { 
+                    module_name: "456",
+                    title: qsTr("驱动器"),
+                    description: "这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述这是一长串的描述",
+                    model: [
+                        { name: "brand", desc: "品牌", show_type: "combox", value: "2", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                        { name: "ccno", desc: "通讯站号", show_type: "combox", value: "3", default_value: "1", 
+                            combox_value: [ {value: "1", desc: "第一"}, {value: "2", desc: "第二"}, {value: "3", desc: "第三"}]},
+                        { name: "fff", desc: "减速比", show_type: "input", value: "1", default_value: "20", min: 0, max: 10 },
+                    ]
+                }
+            ]
+        },
+    ]},
+]

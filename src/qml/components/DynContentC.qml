@@ -6,6 +6,7 @@ import Toou2D 1.0
 Item {
     id: root
     property var model: []
+    property string module_name: ""
     implicitHeight: col.implicitHeight
     height: implicitHeight
 
@@ -21,13 +22,14 @@ Item {
                 //     anchors.horizontalCenter: parent.horizontalCenter
                 // }
                 DynComponentA {
+                    module_name: root.module_name
                     _model: "radio_value" in modelData ? modelData.radio_value : []
                     anchors{
                         left: parent.left
                         right: parent.right
                     }
                     Component.onCompleted: {
-                        console.log(_model.length, modelData.name)
+                        // console.log(_model.length, modelData.name)
                     }
                 }
         }

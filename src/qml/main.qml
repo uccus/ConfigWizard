@@ -93,8 +93,8 @@ Window {
         anchors.centerIn: parent;
     }
     
-    // Component.onCompleted: {
-    //     console.log(_test_ui_data);
-    //     MainStore.ui_data = JSON.parse("{\"name\": \"chassis\", 	\"model\": [{ 		\"module_name\": \"chassis_base\", 		\"title\": \"chassis base\", 		\"image\": { 			\"source\": \"../../images/3.png\", 			\"width\": 300, 			\"height\": 150 		}, 		\"description\": \"1231213\" 	}] }");
-    // }
+    Component.onCompleted: {
+        // console.log(_test_ui_data);
+        // MainStore.ui_data = JSON.parse("{\"name\": \"chassis\", 	\"model\": [{ 		\"module_name\": \"chassis_base\", 		\"title\": \"chassis base\", 		\"image\": { 			\"source\": \"../../images/3.png\", 			\"width\": 300, 			\"height\": 150 		}, 		\"description\": \"1231213\" 	}] }");
+    }
 }

@@ -1,63 +1,323 @@
+<?xml version="1.0" encoding="GB2312"?>
 <Window>
-    <Module name="chassis" desc="åº•ç›˜é…ç½®">
-        <Sub name="chassis_structrue" desc="åº•ç›˜ç»“æž„" show_type="" >
+    <Module name="chassis" desc="µ×ÅÌÅäÖÃ">
+        <Sub name="chassis_structrue" desc="µ×ÅÌ½á¹¹" show_type="" >
         </Sub>
-        <Sub name="install_direction" desc="æŽ§åˆ¶å™¨å®‰è£…æœå‘" show_type="radio_group" default_value="0">
-            <radio value="0" desc="çºµå‘æ­£è£…" image="FRC5000çºµå‘æ­£è£….png"/>
-            <radio value="1" desc="æ¨ªå‘æ­£è£…" image="FRC5000æ¨ªå‘æ­£è£….png"/>
-            <radio value="2" desc="æ°´å¹³æ­£è£…" image="FRC5000æ°´å¹³æ­£è£….png"/>
-            <radio value="3" desc="çºµå‘å€’è£…" image="FRC5000çºµå‘å€’è£….png"/>
+        <Sub name="install_direction" desc="¿ØÖÆÆ÷°²×°³¯Ïò" show_type="radio_group" default_value="0">
+            <radio value="0" desc="×ÝÏòÕý×°" image="FRC5000×ÝÏòÕý×°.png"/>
+            <radio value="1" desc="ºáÏòÕý×°" image="FRC5000ºáÏòÕý×°.png"/>
+            <radio value="2" desc="Ë®Æ½Õý×°" image="FRC5000Ë®Æ½Õý×°.png"/>
+            <radio value="3" desc="×ÝÏòµ¹×°" image="FRC5000×ÝÏòµ¹×°.png"/>
         </Sub>
-        <Sub name="left_driver" desc="å·¦è½®é©±åŠ¨å™¨é…ç½®" image="4.png">
-            <param name="brand" desc="å“ç‰Œ" show_type="combox" default_value="Kinco_FD">
+        <Sub name="left_driver" desc="×óÂÖÇý¶¯Æ÷ÅäÖÃ" image="4.png">
+            <param name="brand" desc="Æ·ÅÆ" show_type="combox" default_value="Kinco_FD">
                 <combox value="Kinco_FD" desc="Kinco_FD"/>
                 <combox value="Syntron_LS" desc="Syntron_LS"/>
                 <combox value="Syntron_DS" desc="Syntron_DS"/>
                 <combox value="Kecong_MRD" desc="Kecong_MRD"/>
             </param>
-            <param name="comm_no" desc="é€šè®¯ç«™å·" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="reduce_ratio" desc="å‡é€Ÿæ¯”" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="resolution" desc="åˆ†è¾¨çŽ‡" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="wheel_d" desc="è½®ç›´å¾„(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="rotate_speed" desc="æœ€é«˜è½¬é€Ÿ(rpm)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="reverse" desc="æ˜¯å¦åå‘" show_type="combox">
-                <combox value="0" desc="æ˜¯"/>
-                <combox value="1" desc="å¦"/>
+            <param name="comm_no" desc="Í¨Ñ¶Õ¾ºÅ" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="reduce_ratio" desc="¼õËÙ±È" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="resolution" desc="·Ö±æÂÊ" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="wheel_d" desc="ÂÖÖ±¾¶(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="rotate_speed" desc="×î¸ß×ªËÙ(rpm)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="reverse" desc="ÊÇ·ñ·´Ïò" show_type="combox">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
             </param>
         </Sub>
-        <Sub name="right_driver" desc="å³è½®é©±åŠ¨å™¨é…ç½®" image="4.png">
-            <param name="brand" desc="å“ç‰Œ" show_type="combox" default_value="">
+        <Sub name="right_driver" desc="ÓÒÂÖÇý¶¯Æ÷ÅäÖÃ" image="4.png">
+            <param name="brand" desc="Æ·ÅÆ" show_type="combox" default_value="">
                 <combox value="Kinco_FD" desc="Kinco_FD"/>
                 <combox value="Syntron_LS" desc="Syntron_LS"/>
                 <combox value="Syntron_DS" desc="Syntron_DS"/>
                 <combox value="Kecong_MRD" desc="Kecong_MRD"/>
             </param>
-            <param name="comm_no" desc="é€šè®¯ç«™å·" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="reduce_ratio" desc="å‡é€Ÿæ¯”" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="resolution" desc="åˆ†è¾¨çŽ‡" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="wheel_d" desc="è½®ç›´å¾„(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="rotate_speed" desc="æœ€é«˜è½¬é€Ÿ(rpm)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="reverse" desc="æ˜¯å¦åå‘" show_type="combox">
-                <combox value="0" desc="æ˜¯"/>
-                <combox value="1" desc="å¦"/>
+            <param name="comm_no" desc="Í¨Ñ¶Õ¾ºÅ" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="reduce_ratio" desc="¼õËÙ±È" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="resolution" desc="·Ö±æÂÊ" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="wheel_d" desc="ÂÖÖ±¾¶(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="rotate_speed" desc="×î¸ß×ªËÙ(rpm)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="reverse" desc="ÊÇ·ñ·´Ïò" show_type="combox">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
             </param>
         </Sub>
     </Module>
-    <Module name="location" desc="å®šä½æ„ŸçŸ¥">
-        <Sub name="bottom_camera" desc="åº•éƒ¨äºŒç»´ç ç›¸æœº" image="7.png">
-            <param name="enable" desc="æ˜¯å¦å¯ç”¨" show_type="combox" default_value="0">
-                <combox value="0" desc="æ˜¯"/>
-                <combox value="1" desc="å¦"/>
+    <Module name="location" desc="¶¨Î»¸ÐÖª">
+        <Sub name="bottom_camera" desc="µ×²¿¶þÎ¬ÂëÏà»ú" image="7.png">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
             </param>
-            <param name="model" desc="åž‹å·" show_type="combox" default_value="R3188">
+            <param name="model" desc="ÐÍºÅ" show_type="combox" default_value="R3188">
                 <combox value="R3188" desc="iPAYPLE_R3188"/>
                 <combox value="PGV100" desc="P+F_PGV100"/>
             </param>
-            <param name="comm_no" desc="é€šè®¯ç«™å·" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="install_x" desc="å®‰è£…ä½ç½®X(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="install_y" desc="å®‰è£…ä½ç½®Y(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="install_degree" desc="å®‰è£…è§’åº¦(Â°)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="others" desc="å…¶ä»–å‚æ•°" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="comm_no" desc="Í¨Ñ¶Õ¾ºÅ" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="install_x" desc="°²×°Î»ÖÃX(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="install_y" desc="°²×°Î»ÖÃY(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="install_degree" desc="°²×°½Ç¶È(¡ã)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="others" desc="ÆäËû²ÎÊý" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+        </Sub>
+        <Sub name="top_camera" desc="¶¥²¿¶þÎ¬ÂëÏà»ú" image="7.png">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+            <param name="model" desc="ÐÍºÅ" show_type="combox" default_value="R3188">
+                <combox value="R3188" desc="iPAYPLE_R3188"/>
+                <combox value="PGV100" desc="P+F_PGV100"/>
+            </param>
+            <param name="comm_no" desc="Í¨Ñ¶Õ¾ºÅ" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="install_x" desc="°²×°Î»ÖÃX(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="install_y" desc="°²×°Î»ÖÃY(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="install_degree" desc="°²×°½Ç¶È(¡ã)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="others" desc="ÆäËû²ÎÊý" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+        </Sub>
+        <Sub name="forward_laser" desc="Ç°¼¤¹âÀ×´ï" image="7.png">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+            <param name="model" desc="ÐÍºÅ" show_type="combox" default_value="R3188">
+                <combox value="R3188" desc="iPAYPLE_R3188"/>
+                <combox value="PGV100" desc="P+F_PGV100"/>
+            </param>
+            <!-- TODO... IPµØÖ· -->
+            <param name="ip" desc="IPµØÖ·" show_type="input" data_type="int" default_value="192.168.100.200"/>
+            <param name="install_x" desc="°²×°Î»ÖÃX(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="install_y" desc="°²×°Î»ÖÃY(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="install_degree" desc="°²×°½Ç¶È(¡ã)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="start_degree" desc="ÆðÊ¼½Ç(¡ã)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="stop_degree" desc="ÖÕÖ¹½Ç(¡ã)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="min_distance" desc="×îÐ¡¾àÀë(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+        </Sub>
+        <Sub name="backward_laser" desc="ºó¼¤¹âÀ×´ï" image="7.png">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+            <param name="model" desc="ÐÍºÅ" show_type="combox" default_value="R3188">
+                <combox value="MRL1500" desc="MRL1500"/>
+                <combox value="OMD30M-R2000-B23-V1V1D-SD-1L" desc="OMD30M-R2000-B23-V1V1D-SD-1L"/>
+                <combox value="nanoScan3_Core" desc="nanoScan3 Core"/>
+                <combox value="MRL716" desc="WRL716"/>
+                <combox value="WRL719" desc="WRL719"/>
+            </param>
+            <!-- TODO... IPµØÖ· -->
+            <param name="ip" desc="IPµØÖ·" show_type="input" data_type="int" default_value="192.168.100.200"/>
+            <param name="install_x" desc="°²×°Î»ÖÃX(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="install_y" desc="°²×°Î»ÖÃY(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="install_degree" desc="°²×°½Ç¶È(¡ã)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="start_degree" desc="ÆðÊ¼½Ç(¡ã)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="stop_degree" desc="ÖÕÖ¹½Ç(¡ã)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+            <param name="min_distance" desc="×îÐ¡¾àÀë(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+        </Sub>
+    </Module>
+    <Module name="Safety" desc="°²È«·À»¤">
+        <Sub name="stop_signal" desc="¼±Í£ÐÅºÅ">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+            <param name="sign_path" desc="ÐÅºÅÍ¨µÀ" show_type="combox" default_value="0">
+                <combox value="DI0001" desc="DI0001"/>
+            </param>
+            <param name="opposite" desc="ÊÇ·ñÈ¡·´" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+        </Sub>
+        <Sub name="edge_signal" desc="´¥±ßÐÅºÅ">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+            <param name="sign_path" desc="ÐÅºÅÍ¨µÀ" show_type="combox" default_value="0">
+                <combox value="DI0001" desc="DI0001"/>
+            </param>
+            <param name="opposite" desc="ÊÇ·ñÈ¡·´" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+        </Sub>
+        <Sub name="slow_signal" desc="¼õËÙÐÅºÅ">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+            <param name="sign_path" desc="ÐÅºÅÍ¨µÀ" show_type="combox" default_value="0">
+                <combox value="DI0001" desc="DI0001"/>
+            </param>
+            <param name="opposite" desc="ÊÇ·ñÈ¡·´" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+        </Sub>
+    </Module>
+    <Module name="Vehicle" desc="ÔØ¾ß¹¦ÄÜ">
+        <Sub name="follow_mech" desc="Ëæ¶¯»ú¹¹">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+            <Sub name="zero_switch" desc="ÁãÎ»¿ª¹Ø">
+                <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                    <combox value="0" desc="ÊÇ"/>
+                    <combox value="1" desc="·ñ"/>
+                </param>
+                <param name="sign_path" desc="ÐÅºÅÍ¨µÀ" show_type="combox" default_value="0">
+                    <combox value="DI0001" desc="DI0001"/>
+                </param>
+                <param name="opposite" desc="ÊÇ·ñÈ¡·´" show_type="combox" default_value="0">
+                    <combox value="0" desc="ÊÇ"/>
+                    <combox value="1" desc="·ñ"/>
+                </param>
+            </Sub>
+            <Sub name="driver" desc="Çý¶¯Æ÷">
+                <param name="brand" desc="Æ·ÅÆ" show_type="combox" default_value="">
+                    <combox value="Kinco_FD" desc="Kinco_FD"/>
+                    <combox value="Syntron_LS" desc="Syntron_LS"/>
+                    <combox value="Syntron_DS" desc="Syntron_DS"/>
+                    <combox value="Kecong_MRD" desc="Kecong_MRD"/>
+                </param>
+                <param name="comm_no" desc="Í¨Ñ¶Õ¾ºÅ" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+                <param name="reduce_ratio" desc="¼õËÙ±È" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+                <param name="resolution" desc="·Ö±æÂÊ" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+                <param name="wheel_d" desc="ÂÖÖ±¾¶(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+                <param name="rotate_speed" desc="×î¸ß×ªËÙ(rpm)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+                <param name="reverse" desc="ÊÇ·ñ·´Ïò" show_type="combox">
+                    <combox value="0" desc="ÊÇ"/>
+                    <combox value="1" desc="·ñ"/>
+                </param>
+            </Sub>
+        </Sub>
+        <Sub name="top_mech" desc="¶¥Éý»ú¹¹">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+            <param name="model" desc="¶¥ÉýÄ£Ê½" show_type="combox" default_value="0">
+                <combox value="0" desc="½öÏÂÏÞÎ»"/>
+            </param>
+            <Sub name="lower_switch" desc="ÏÂÏÞÎ»¿ª¹Ø">
+                <param name="sign_path" desc="ÐÅºÅÍ¨µÀ" show_type="combox" default_value="0">
+                    <combox value="DI0001" desc="DI0001"/>
+                </param>
+                <param name="opposite" desc="ÊÇ·ñÈ¡·´" show_type="combox" default_value="0">
+                    <combox value="0" desc="ÊÇ"/>
+                    <combox value="1" desc="·ñ"/>
+                </param>
+            </Sub>
+            <Sub name="driver" desc="Çý¶¯Æ÷">
+                <param name="brand" desc="Æ·ÅÆ" show_type="combox" default_value="">
+                    <combox value="Kinco_FD" desc="Kinco_FD"/>
+                    <combox value="Syntron_LS" desc="Syntron_LS"/>
+                    <combox value="Syntron_DS" desc="Syntron_DS"/>
+                    <combox value="Kecong_MRD" desc="Kecong_MRD"/>
+                </param>
+                <param name="comm_no" desc="Í¨Ñ¶Õ¾ºÅ" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+                <param name="reduce_ratio" desc="¼õËÙ±È" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+                <param name="resolution" desc="·Ö±æÂÊ" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+                <param name="wheel_d" desc="ÂÖÖ±¾¶(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+                <param name="rotate_speed" desc="×î¸ß×ªËÙ(rpm)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
+                <param name="reverse" desc="ÊÇ·ñ·´Ïò" show_type="combox">
+                    <combox value="0" desc="ÊÇ"/>
+                    <combox value="1" desc="·ñ"/>
+                </param>
+            </Sub>
+        </Sub>
+    </Module>
+    <Module name="HC_Interaction" desc="ÈË»ú½»»¥">
+        <Sub name="startup_btn" desc="Æô¶¯°´Å¥">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+            <param name="sign_path" desc="ÐÅºÅÍ¨µÀ" show_type="combox" default_value="0">
+                <combox value="DI0001" desc="DI0001"/>
+            </param>
+            <param name="opposite" desc="ÊÇ·ñÈ¡·´" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+        </Sub>
+        <Sub name="reset_btn" desc="¸´Î»°´Å¥">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+            <param name="sign_path" desc="ÐÅºÅÍ¨µÀ" show_type="combox" default_value="0">
+                <combox value="DI0001" desc="DI0001"/>
+            </param>
+            <param name="opposite" desc="ÊÇ·ñÈ¡·´" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+        </Sub>
+        <Sub name="brake_btn" desc="ÊÖ×Ô¶¯°´Å¥">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+            <param name="sign_path" desc="ÐÅºÅÍ¨µÀ" show_type="combox" default_value="0">
+                <combox value="DI0001" desc="DI0001"/>
+            </param>
+            <param name="opposite" desc="ÊÇ·ñÈ¡·´" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+        </Sub>
+    </Module>
+    <Module name="others" desc="ÆäËû">
+        <Sub name="BMS" desc="µç³ØBMS">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+            <param name="model" desc="ÐÍºÅ" show_type="combox" default_value="0">
+                <combox value="Type1" desc="Type1"/>
+            </param>
+            <param name="sign_path" desc="ÐÅºÅÍ¨µÀ" show_type="combox" default_value="0">
+                <combox value="0" desc="RS485"/>
+            </param>
+            <param name="comm_no" desc="Í¨Ñ¶Õ¾ºÅ" show_type="combox" default_value="0">
+                <combox value="0" desc="1"/>
+                <combox value="1" desc="2"/>
+            </param>
+        </Sub>
+        <Sub name="charge" desc="³äµç¿ØÖÆ">
+            <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                <combox value="0" desc="ÊÇ"/>
+                <combox value="1" desc="·ñ"/>
+            </param>
+            <Sub name="start" desc="Æô¶¯³äµç">
+                <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                    <combox value="0" desc="ÊÇ"/>
+                    <combox value="1" desc="·ñ"/>
+                </param>
+                <param name="sign_path" desc="ÐÅºÅÍ¨µÀ" show_type="combox" default_value="0">
+                    <combox value="DI0001" desc="DI0001"/>
+                </param>
+                <param name="opposite" desc="ÊÇ·ñÈ¡·´" show_type="combox" default_value="0">
+                    <combox value="0" desc="ÊÇ"/>
+                    <combox value="1" desc="·ñ"/>
+                </param>
+            </Sub>
+            <Sub name="stop" desc="½áÊø³äµç">
+                <param name="enable" desc="ÊÇ·ñÆôÓÃ" show_type="combox" default_value="0">
+                    <combox value="0" desc="ÊÇ"/>
+                    <combox value="1" desc="·ñ"/>
+                </param>
+                <param name="sign_path" desc="ÐÅºÅÍ¨µÀ" show_type="combox" default_value="0">
+                    <combox value="DI0001" desc="DI0001"/>
+                </param>
+                <param name="opposite" desc="ÊÇ·ñÈ¡·´" show_type="combox" default_value="0">
+                    <combox value="0" desc="ÊÇ"/>
+                    <combox value="1" desc="·ñ"/>
+                </param>
+            </Sub>
         </Sub>
     </Module>
 </Window>

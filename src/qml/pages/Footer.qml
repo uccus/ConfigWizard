@@ -21,6 +21,7 @@ Item {
 
         TButton {
             label.text: qsTr("完成")
+            onClicked: AppActions.generateFile()
         }
     }
 }

@@ -12,7 +12,7 @@ Rectangle {
         anchors.centerIn: parent
         spacing: 10
         Repeater{
-            model: MainStore.wizard.model
+            model: MainStore.ui_data
             delegate: wizard_component
         }
     }
@@ -34,7 +34,7 @@ Rectangle {
                 }
                 height: 60
                 background.color: model.index == MainStore.wizard.current_index ? "#1e98d7" : "#ffffff"
-                label.text: model.desc
+                label.text: model.modelData.desc
                 label.font.pixelSize: TPixelSizePreset.PH2
                 label.color: model.index == MainStore.wizard.current_index ? "#fefefe" : "black"
                 onClicked: AppActions.toNextWizardPage(model.index);
@@ -49,7 +49,7 @@ Rectangle {
                 height: 30
                 source: "../../images/1.png"
                 fillMode: Image.PreserveAspectFit
-                visible: model.index != (MainStore.wizard.model.count - 1)
+                visible: model.index != (MainStore.ui_data.length - 1)
             }
         }
     }

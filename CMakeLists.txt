@@ -14,7 +14,8 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_definitions(-D_WINDOWS -DCONFIGURATIN_WIZARD_EXPORTS)
-add_compile_options(/utf-8)
+# add_compile_options(/utf-8)
+add_compile_options(/execution-charset:utf-8)
 
 find_package(Qt5 COMPONENTS Quick Gui REQUIRED)
 
@@ -28,7 +29,7 @@ add_library(${OUTPUT_NAME} SHARED ${SRC} ${QRC_FILES})
 
 target_include_directories(${OUTPUT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_directories(${OUTPUT_NAME} PUBLIC lib)
-target_link_libraries(${OUTPUT_NAME} PRIVATE Qt5::Gui Qt5::Quick quickfluxd)
+target_link_libraries(${OUTPUT_NAME} PRIVATE Qt5::Gui Qt5::Quick quickfluxd kcnet_file_d)
 
 #############################################
 aux_source_directory(test TEST_SRC)

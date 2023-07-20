@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.3
 import Toou2D 1.0
 
 Item {
+    property string module_name: ""
     property alias _model: gview.model
     implicitHeight: gview.cellHeight
     width: implicitWidth

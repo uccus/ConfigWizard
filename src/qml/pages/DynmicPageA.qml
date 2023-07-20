@@ -9,7 +9,7 @@ Item {
     // 标题
     property alias title: title_line.text
     // 模块内部键
-    property string module_name: ""
+    property alias module_name: inter.module_name
     // 数据项
     property alias model_data : inter.content_model
     property alias radio_model_data: inter.radio_model
@@ -38,6 +38,7 @@ Item {
         property var content_model: [];
         property var radio_model: [];
 
+        property string module_name;
         property var imgSource;
         property var imgWidth;
         property var imgHeight;
@@ -57,6 +58,7 @@ Item {
     Component {
         id: content
         DynContentA {
+            module_name: inter.module_name
             model: inter.content_model
         }
     }
@@ -76,6 +78,7 @@ Item {
     Component {
         id: radio_content
         DynContentC {
+            module_name: inter.module_name
             model: inter.radio_model
         }
     }

@@ -2,6 +2,7 @@
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import Toou2D 1.0
+import "../stores"
 
 /**
     字段描述：编辑框或下拉框
@@ -17,7 +18,8 @@ Item {
 
     TLabel {
         id: label
-        width: 50
+        width: 60
+        wrapMode: Text.WordWrap
         text: itemModel.desc
         anchors.verticalCenter: parent.verticalCenter
     }
@@ -39,16 +41,32 @@ Item {
                 return visible ? itemModel.combox_value.map(function(a) {return a.desc;}) : [];
             }
             visible: itemModel.show_type === "combox"
-            // currentIndex: itemModel.value
+            currentIndex: {
+                var value = MainStore.getValue(module_name, itemModel.name);
+                if ("combox_value" in itemModel){
+                    for (var i = 0; i < itemModel.combox_value.length; i++) {
+                        if (value === itemModel.combox_value[i].value) {
+                            return i;
+                        }
+                    }
+                }
+                return -1;
+            }
             // TODO: 字段值的查询和更新
+            onActivated: {
+                var current_value = itemModel.combox_value[index].value;
+                MainStore.updateValue(module_name, itemModel.name, current_value);
+            }
         }
         
         TInputField {
             id: input
             height: 30
-            text: itemModel.value
+            text: MainStore.getValue(module_name, itemModel.name)
             visible: itemModel.show_type === "input"
-            // TODO: 字段值的查询和更新
+            onEditingFinished: {
+                MainStore.updateValue(module_name, itemModel.name, text);
+            }
         }
     }
 }

@@ -39,6 +39,12 @@ Item {
                     imgHeight: "image" in modelData ? modelData.image.height : 0
                     description: "description" in modelData ? modelData.description : ""
                     child_model_data: "child_model_data" in modelData ? modelData.child_model_data : []
+                    Component.onCompleted: {
+                        // console.log("main store model", JSON.stringify(MainStore.model))
+                        // console.log("--------------------------------")
+                        // console.log("main page", JSON.stringify(modelData))
+                        // console.log("--------------------------------")
+                    }
                 }
                 // model: 15
                 // delegate: Rectangle {

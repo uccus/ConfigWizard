@@ -7,6 +7,7 @@ import Toou2D 1.0
     动态图片或文字或啥也没有
 */
 Rectangle {
+    id: root
     // 图片
     property alias imgSource: img.source
     property alias imgWidth: img.width
@@ -22,7 +23,11 @@ Rectangle {
     // implicitHeight: 500
     // height: implicitHeight
     color: "#fafafa"
-    visible: desc.visible || img.visible
+    visible: {
+        return false;
+        // 不起作用
+        // return desc.visible || img.visible
+    }
 
     ColumnLayout {
     // Column {
@@ -35,7 +40,13 @@ Rectangle {
             text: "    " + description
             // width: parent.width
             wrapMode: Text.WordWrap
-            visible: description !== ""
+            visible: {
+                if (description !== ""){
+                    root.visible = true;
+                    return true;
+                }
+                return false;
+            }
             Layout.fillWidth: true
             Layout.rightMargin: 20
             Layout.preferredWidth: 200
@@ -49,9 +60,15 @@ Rectangle {
         }
         TImage {
             id: img
-            asynchronous: true
+            // asynchronous: true
             fillMode: Image.PreserveAspectFit
-            visible: status === Image.Ready
+            visible: {
+                if (status === Image.Ready){
+                    root.visible = true
+                    return true;
+                }
+                return false;
+            }
 
             Layout.rightMargin: 20
             Layout.preferredHeight: sourceSize.height * imgWidth / sourceSize.width
@@ -67,7 +84,7 @@ Rectangle {
             //     rightMargin: 20
             // }
             Component.onCompleted: {
-                // console.log("image", width, height, imgWidth, imgHeight)
+                // console.log("image", visible, status, Image.Ready, source, width, height, imgWidth, imgHeight)
             }
         }
     }
