@@ -2,7 +2,9 @@
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import Toou2D 1.0
+import "../stores"
 
+// 这里是一组radiobutton，module_name等于param_name
 Item {
     property string module_name: ""
     property alias _model: gview.model
@@ -12,12 +14,7 @@ Item {
     ButtonGroup {
         id: radio_group
         onClicked: {
-            // for (var i = 0; i < buttons.length; i++){
-            //     if (buttons[i] === button){
-            //         AppActions.updateInstallDirection(i);
-            //         break;
-            //     }
-            // }
+            MainStore.updateValue(module_name, module_name, button.value);
         }
     }
 
@@ -25,17 +22,20 @@ Item {
         id: gview
         clip: true
         anchors.fill: parent
-        cellHeight: 250; cellWidth: 150
+        anchors.horizontalCenter: parent.horizontalCenter;
+        cellWidth: 150; cellHeight: 200
 
         delegate: 
             Rectangle {
-                width: 150; height: 250
+                width: gview.cellWidth; height: gview.cellHeight
                 // color: "red"
                 ColumnLayout {
                     anchors.fill: parent
                     RadioButton {
                         id: button
+                        property string value: modelData.value;
                         text: modelData.desc
+                        checked: value === MainStore.getValue(module_name, module_name)
                         ButtonGroup.group: radio_group
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignHCenter

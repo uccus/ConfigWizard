@@ -67,6 +67,28 @@ Item {
             onEditingFinished: {
                 MainStore.updateValue(module_name, itemModel.name, text);
             }
+            validator: {
+                var obj = null;
+                if (itemModel.data_type === "int" || itemModel.data_type === "uint"){
+                    obj = Qt.createQmlObject("import QtQuick 2.7; IntValidator{}", input);
+                }
+                else if (itemModel.data_type === "float" || itemModel.data_type === "double") {
+                    obj = Qt.createQmlObject("import QtQuick 2.7; import com.kc.quick 1.0; KCFloatValidator{}", input);
+                }
+
+                if (obj !== null){
+                    if ("min" in itemModel && "max" in itemModel){
+                        obj.bottom = itemModel.min;
+                        obj.top = itemModel.max;
+                        input.maximumLength = Math.max(itemModel.min.length, itemModel.max.length);
+                    }
+                    else {
+                        obj.bottom = 0;
+                        input.maximumLength = 5;
+                    }
+                }
+                return obj;
+            }
         }
     }
 }

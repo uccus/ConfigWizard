@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "istream": "cpp",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "qqmlapplicationengine": "cpp"
     }
 }

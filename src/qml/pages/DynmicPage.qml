@@ -2,7 +2,11 @@
 import QtQuick.Layouts 1.3
 import Toou2D 1.0
 import "../components"
+import "../actions"
 
+/**
+    这里对应每个Sub节点
+*/
 Item {
     id: root
     clip: true
@@ -83,13 +87,10 @@ Item {
         }
     }
 
-    // Column {
     ColumnLayout {
         id: col
         clip: true
-        // spacing: 10
         height: title_line.expanded ? row.height + child.height : 0
-        // height: title_line.expanded ? row.height : 0
         anchors {
             top: title_line.bottom
             left: parent.left
@@ -99,17 +100,16 @@ Item {
         
         // 主项
         RowLayout {
-        // Row {
             id: row
             Layout.fillWidth: true
             // 动态编辑内容
             Loader {
                 id: content_loader
                 visible: inter.content_model.length > 0
-                // visible: false
                 Layout.fillWidth: true
                 asynchronous: true
                 sourceComponent: content
+                onStatusChanged: AppActions.showBusy(status !== Loader.Ready)
             }
             // 动态选择框
             Loader {
@@ -118,9 +118,9 @@ Item {
                 Layout.fillHeight: false
                 Layout.fillWidth: true
                 Layout.preferredWidth: 500
-                // width: row.width
                 asynchronous: true
                 sourceComponent: radio_content
+                onStatusChanged: AppActions.showBusy(status !== Loader.Ready)
             }
             // 空白
             // Item {
@@ -133,6 +133,7 @@ Item {
                 Layout.fillWidth: true
                 asynchronous: true
                 sourceComponent: desc_content
+                onStatusChanged: AppActions.showBusy(status !== Loader.Ready)
             }
         }
         
@@ -141,30 +142,16 @@ Item {
             id: child
             clip: true
             visible: root.child_model_data.length > 0
-            // visible: true
-            // anchors {
-            //     left: parent.left
-            //     right: parent.right
-            //     leftMargin: 20
-            // }
-            // Layout.fillHeight: true
             Layout.fillWidth: true
-            // width: row.width
             Layout.leftMargin: 20
             
-            // Rectangle {
-            //     width:200; height: 100
-            //     color: "red"
-            // }
-
             Component.onCompleted: {
                 if (child.visible) {
                     for (var i = 0; i < root.child_model_data.length; i++){
                         var model = root.child_model_data[i];
-                        var tmp = Qt.createComponent("DynmicPageA.qml");
+                        var tmp = Qt.createComponent("DynmicPage.qml");
                         var obj = tmp.createObject(child);
                         obj.width = child.width;
-                        // obj.height = 200;
                         obj.module_name = model.module_name
                         obj.title = model.title;
                         obj.model_data = "model" in model ? model.model : [];
@@ -180,8 +167,6 @@ Item {
                         // obj.color = "red";
                     }
                 }
-                
-                // console.log("child page", width, height);
             }
         }
         Behavior on height {
@@ -189,9 +174,5 @@ Item {
                 duration: 200
             }
         }
-    }
-    
-    Component.onCompleted: {
-        // console.log("dyn page", width, height, title)
     }
 }

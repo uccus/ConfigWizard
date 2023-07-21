@@ -3,13 +3,14 @@
     <file>qml/main.qml</file>
     <file>qml/pages/ContentPage.qml</file>
     <file>qml/pages/DynmicMainPage.qml</file>
-    <file>qml/pages/DynmicPageA.qml</file>
+    <file>qml/pages/DynmicPage.qml</file>
     <file>qml/pages/Footer.qml</file>
     <file>qml/pages/WizardPage.qml</file>
+    <file>qml/pages/DoubleComboxPage.qml</file>
 
     <file>qml/stores/qmldir</file>
     <file>qml/stores/MainStore.qml</file>
-    <file>qml/stores/RootStoreB.qml</file>
+    <file>qml/stores/RootStore.qml</file>
     <file>qml/stores/WizardStore.qml</file>
 
     <file>qml/components/DynComponentA.qml</file>
@@ -17,8 +18,6 @@
     <file>qml/components/DynContentA.qml</file>
     <file>qml/components/DynContentB.qml</file>
     <file>qml/components/DynContentC.qml</file>
-    <file>qml/components/InstallDirection.qml</file>
-    <file>qml/components/InstallDirectionItem.qml</file>
     <file>qml/components/Searchbar.qml</file>
     <file>qml/components/TitleLine.qml</file>
 
@@ -27,18 +26,11 @@
     <file>qml/actions/AppActions.qml</file>
 
     <file>qml/middlewares/BusyIndicatorMiddleware.qml</file>
-    <file>qml/js/dynamic_create.js</file>
+    <file>qml/middlewares/GenerateFileMiddleware.qml</file>
 
     <file>images/1.png</file>
     <file>images/2.png</file>
-    <file>images/3.png</file>
-    <file>images/4.png</file>
     <file>images/5.png</file>
     <file>images/6.png</file>
-    <file>images/7.png</file>
-    <file>images/FRC5000横向正装.png</file>
-    <file>images/FRC5000水平正装.png</file>
-    <file>images/FRC5000纵向倒装.png</file>
-    <file>images/FRC5000纵向正装.png</file>
 </qresource>
 </RCC>

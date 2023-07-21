@@ -30,6 +30,11 @@ QString XmlParser::getJson()
     return _str_json;
 }
 
+QVariantList XmlParser::getSpecialVariants()
+{
+    return _special_node;
+}
+
 QString XmlParser::getDefaultValues()
 {
     QJsonDocument doc;
@@ -76,6 +81,9 @@ bool XmlParser::loadParams(kc_xml_node& sub_node, QJsonObject& parent, QJsonArra
             }
             if (param_node.has_property("default_value")) {
                 param_obj["default_value"] = QString::fromStdString(param_node.get_property("default_value"));
+            }
+            if (param_node.has_property("data_type")) {
+                param_obj["data_type"] = QString::fromStdString(param_node.get_property("data_type"));
             }
             if (param_node.has_property("min")) {
                 param_obj["min"] = QString::fromStdString(param_node.get_property("min"));
@@ -179,6 +187,7 @@ bool XmlParser::parseSubNode(kc_xml_node &sub_node, QJsonObject &sub_js_obj)
             loadRadios(sub_node, radio_array);
             if (radio_array.size() > 0){
                 sub_js_obj["radio_model"] = radio_array;
+                sub_js_obj["show_type"] = "radio_group";
                 QJsonObject tmp0 = radio_array[0].toObject();
                 QString default_value = tmp0["default_value"].toString();
                 QString module_name = sub_js_obj["module_name"].toString();
@@ -189,6 +198,14 @@ bool XmlParser::parseSubNode(kc_xml_node &sub_node, QJsonObject &sub_js_obj)
                 tmp2.append(tmp1);
 
                 _value_json[module_name] = tmp2;
+            }
+        }
+        else if (type == "double_combox") {
+            QJsonArray double_combox_array;
+            loadDoubleCombox(sub_node, double_combox_array);
+            if (double_combox_array.size() > 0) {
+                sub_js_obj["double_combox_model"] = double_combox_array;
+                sub_js_obj["show_type"] = "double_combox";
             }
         }
     }
@@ -226,28 +243,74 @@ bool XmlParser::loadModules(kc_xml_node& window_node, QJsonArray& out)
 {
     auto& child_node = window_node.get_first_child();
     while(child_node.valid()) {
-        if (child_node.get_name() != "Module") {
-            child_node = child_node.get_next_brother();
-            continue;
-        };
+        if (child_node.get_name() == "Module") {
+            // Module
+            QJsonObject js_obj; 
+            if (child_node.has_property("name")){
+                js_obj["name"] = QString::fromStdString(child_node.get_property("name"));
+            }
+            if (child_node.has_property("desc")){
+                js_obj["desc"] = QString::fromLocal8Bit(child_node.get_property("desc").c_str());
+            }
+            
+            QJsonArray sub_js_obj_array;
+            loadSubs(child_node, sub_js_obj_array);
+            
+            if (sub_js_obj_array.size() > 0)
+                js_obj["model"] = sub_js_obj_array;
+            out.append(js_obj);
+        }
+        else if (child_node.get_name() == "Special") {
+            // 特殊节点
+            auto& special_node = child_node.get_first_child();
+            while(special_node.valid()) {
+                if (special_node.has_property("name")) {
+                    _special_node << QString::fromStdString(special_node.get_property("name"));
+                }
+                special_node = special_node.get_next_brother();
+            }
+        }
 
-        // Module
-        QJsonObject js_obj; 
-        if (child_node.has_property("name")){
-            js_obj["name"] = QString::fromStdString(child_node.get_property("name"));
-        }
-        if (child_node.has_property("desc")){
-            js_obj["desc"] = QString::fromLocal8Bit(child_node.get_property("desc").c_str());
-        }
-        
-        QJsonArray sub_js_obj_array;
-        loadSubs(child_node, sub_js_obj_array);
-        
-        if (sub_js_obj_array.size() > 0)
-            js_obj["model"] = sub_js_obj_array;
-        out.append(js_obj);
         child_node = child_node.get_next_brother();
     }
 
+    return true;
+}
+
+bool XmlParser::loadDoubleCombox(kc_xml_node &sub_node, QJsonArray &out)
+{
+    auto& child_node = sub_node.get_first_child();
+    while(child_node.valid()) {
+        QJsonObject param_obj;
+        if (child_node.has_property("name")) {
+            param_obj["name"] = QString::fromStdString(child_node.get_property("name"));
+        }
+        if (child_node.has_property("desc")){
+            param_obj["desc"] = QString::fromLocal8Bit(child_node.get_property("desc").c_str());
+        }
+
+        QJsonArray combox_array;
+        auto& combox_node = child_node.get_first_child();
+        while(combox_node.valid()){
+            QJsonObject combox_obj;
+            if (combox_node.has_property("value")){
+                combox_obj["value"] = QString::fromStdString(combox_node.get_property("value"));
+            }
+            if (combox_node.has_property("desc")){
+                combox_obj["desc"] = QString::fromLocal8Bit(combox_node.get_property("desc").c_str());
+            }
+            combox_array.append(combox_obj);
+            combox_node = combox_node.get_next_brother();
+        }
+
+        if (combox_array.size() > 0){
+            param_obj["model"] = combox_array;
+        }
+
+        if (!param_obj.isEmpty()) {
+            out.append(param_obj);
+        }
+        child_node = child_node.get_next_brother();
+    }
     return true;
 }

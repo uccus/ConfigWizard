@@ -24,12 +24,8 @@ Window {
 
         // SearchResultMiddleware {}
         // NavigationMiddleware {stack: stack}
-        // ChassisDynmicPageMiddleware{}
-        // LocationDynmicPageMiddleware{}
-        // SecurityDynmicPageMiddleware{}
-        // VehicleDynmicPageMiddleware{}
-        // HCInteractionDynmicPageMiddleware{}
         BusyIndicatorMiddleware {bi: bi}
+        GenerateFileMiddleware{}
     }
 
     Component {
@@ -70,22 +66,6 @@ Window {
         anchors.fill: parent
         initialItem: main
     }
-
-    // TDialog{
-    //     id:dialog
-    //     titleText: "Hi Toou2D";
-    //     contentText: "This a dialog style for default"
-    //     buttons: [
-    //         TDialogButton{
-    //             label.text: "Agree"
-    //             label.font.bold: true;
-    //             label.font.pixelSize: TPixelSizePreset.PH5
-    //             label.color: "#46A0FC"
-    //         }
-    //     ]
-
-    //     onTriggered: hideAndClose();
-    // }
 
     TBusyIndicator{
         id:bi;
