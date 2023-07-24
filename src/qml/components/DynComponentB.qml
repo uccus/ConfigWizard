@@ -15,7 +15,7 @@ Item {
     property string module_name: ""
     // property var itemModel: model
     property var itemModel: model.modelData
-
+    
     TLabel {
         id: label
         width: 60
@@ -62,8 +62,22 @@ Item {
         TInputField {
             id: input
             height: 30
+            border.color: text === "" ? "red" : "#9D9D9D"
+            border.width: text === "" ? 2 : 1
             text: MainStore.getValue(module_name, itemModel.name)
+            placeholderLabel.text: ""
+            clearable: false
             visible: itemModel.show_type === "input"
+            onTextChanged: {
+                if (text === ""){
+                    MainStore.wizard.check_ref += 1
+                }
+                else {
+                    if (MainStore.wizard.check_ref > 0){
+                        MainStore.wizard.check_ref -= 1
+                    }
+                }
+            }
             onEditingFinished: {
                 MainStore.updateValue(module_name, itemModel.name, text);
             }
@@ -82,10 +96,10 @@ Item {
                         obj.top = itemModel.max;
                         input.maximumLength = Math.max(itemModel.min.length, itemModel.max.length);
                     }
-                    else {
-                        obj.bottom = 0;
-                        input.maximumLength = 5;
-                    }
+                    // else {
+                    //     obj.bottom = 0;
+                    //     input.maximumLength = 5;
+                    // }
                 }
                 return obj;
             }

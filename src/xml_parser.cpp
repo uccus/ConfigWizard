@@ -187,7 +187,6 @@ bool XmlParser::parseSubNode(kc_xml_node &sub_node, QJsonObject &sub_js_obj)
             loadRadios(sub_node, radio_array);
             if (radio_array.size() > 0){
                 sub_js_obj["radio_model"] = radio_array;
-                sub_js_obj["show_type"] = "radio_group";
                 QJsonObject tmp0 = radio_array[0].toObject();
                 QString default_value = tmp0["default_value"].toString();
                 QString module_name = sub_js_obj["module_name"].toString();
@@ -205,9 +204,9 @@ bool XmlParser::parseSubNode(kc_xml_node &sub_node, QJsonObject &sub_js_obj)
             loadDoubleCombox(sub_node, double_combox_array);
             if (double_combox_array.size() > 0) {
                 sub_js_obj["double_combox_model"] = double_combox_array;
-                sub_js_obj["show_type"] = "double_combox";
             }
         }
+        sub_js_obj["show_type"] = QString::fromStdString(type);
     }
     if (sub_node.has_property("image")) {
         QJsonObject img_js_obj;

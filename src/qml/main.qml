@@ -25,6 +25,7 @@ Window {
         // SearchResultMiddleware {}
         // NavigationMiddleware {stack: stack}
         BusyIndicatorMiddleware {bi: bi}
+        CheckParamMiddleware{}
         GenerateFileMiddleware{}
     }
 

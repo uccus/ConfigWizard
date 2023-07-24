@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="GB2312"?>
+<!-- Module 每个Module对应一个向导页 -->
+<!-- Sub 每个Sub对应页中的一个节点 -->
+<!-- Sub 可以有文字描述(description),可以有图片描述(image),图片可以设置宽高(width,height) -->
+<!-- Sub 也可以有子节点 -->
+<!-- Sub 一般没有show_type,目前可以设置radio_group和double_combox -->
+<!-- param 参数项,可以是编辑框(input),可以是下拉框(combox) -->
+<!-- 每一个节点需要设置name，且每个module下的Sub和param的name需要唯一 -->
 <Window>
+    <!-- 特殊节点，程序内部做过滤用 -->
+    <Special>
+        <param name="double_combox"/>
+        <param name="chassis_param"/>
+    </Special>
     <Module name="chassis" desc="底盘配置">
-        <Sub name="chassis_structrue" desc="底盘结构" show_type="" >
+        <Sub name="chassis_structrue" desc="底盘结构" show_type="chassis_param" >
         </Sub>
         <Sub name="install_direction" desc="控制器安装朝向" show_type="radio_group" default_value="0">
-            <radio value="0" desc="纵向正装" image="FRC5000纵向正装.png"/>
-            <radio value="1" desc="横向正装" image="FRC5000横向正装.png"/>
-            <radio value="2" desc="水平正装" image="FRC5000水平正装.png"/>
-            <radio value="3" desc="纵向倒装" image="FRC5000纵向倒装.png"/>
+            <radio value="0" desc="纵向正装" image="images/FRC5000纵向正装.png"/>
+            <radio value="1" desc="横向正装" image="images/FRC5000横向正装.png"/>
+            <radio value="2" desc="水平正装" image="images/FRC5000水平正装.png"/>
+            <radio value="3" desc="纵向倒装" image="images/FRC5000纵向倒装.png"/>
         </Sub>
-        <Sub name="left_driver" desc="左轮驱动器配置" image="4.png">
+        <Sub name="left_driver" desc="左轮驱动器配置" image="images/4.png">
             <param name="brand" desc="品牌" show_type="combox" default_value="Kinco_FD">
                 <combox value="Kinco_FD" desc="Kinco_FD"/>
                 <combox value="Syntron_LS" desc="Syntron_LS"/>
@@ -21,13 +33,13 @@
             <param name="resolution" desc="分辨率" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
             <param name="wheel_d" desc="轮直径(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
             <param name="rotate_speed" desc="最高转速(rpm)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="reverse" desc="是否反向" show_type="combox">
+            <param name="reverse" desc="是否反向" show_type="combox" default_value="0">
                 <combox value="0" desc="是"/>
                 <combox value="1" desc="否"/>
             </param>
         </Sub>
-        <Sub name="right_driver" desc="右轮驱动器配置" image="4.png">
-            <param name="brand" desc="品牌" show_type="combox" default_value="">
+        <Sub name="right_driver" desc="右轮驱动器配置" image="images/4.png">
+            <param name="brand" desc="品牌" show_type="combox" default_value="Syntron_LS">
                 <combox value="Kinco_FD" desc="Kinco_FD"/>
                 <combox value="Syntron_LS" desc="Syntron_LS"/>
                 <combox value="Syntron_DS" desc="Syntron_DS"/>
@@ -38,14 +50,14 @@
             <param name="resolution" desc="分辨率" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
             <param name="wheel_d" desc="轮直径(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
             <param name="rotate_speed" desc="最高转速(rpm)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-            <param name="reverse" desc="是否反向" show_type="combox">
+            <param name="reverse" desc="是否反向" show_type="combox" default_value="0">
                 <combox value="0" desc="是"/>
                 <combox value="1" desc="否"/>
             </param>
         </Sub>
     </Module>
     <Module name="location" desc="定位感知">
-        <Sub name="bottom_camera" desc="底部二维码相机" image="7.png">
+        <Sub name="bottom_camera" desc="底部二维码相机" image="images/7.png">
             <param name="enable" desc="是否启用" show_type="combox" default_value="0">
                 <combox value="0" desc="是"/>
                 <combox value="1" desc="否"/>
@@ -60,7 +72,7 @@
             <param name="install_degree" desc="安装角度(°)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
             <param name="others" desc="其他参数" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
         </Sub>
-        <Sub name="top_camera" desc="顶部二维码相机" image="7.png">
+        <Sub name="top_camera" desc="顶部二维码相机" image="images/7.png">
             <param name="enable" desc="是否启用" show_type="combox" default_value="0">
                 <combox value="0" desc="是"/>
                 <combox value="1" desc="否"/>
@@ -75,7 +87,7 @@
             <param name="install_degree" desc="安装角度(°)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
             <param name="others" desc="其他参数" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
         </Sub>
-        <Sub name="forward_laser" desc="前激光雷达" image="7.png">
+        <Sub name="forward_laser" desc="前激光雷达" image="images/7.png">
             <param name="enable" desc="是否启用" show_type="combox" default_value="0">
                 <combox value="0" desc="是"/>
                 <combox value="1" desc="否"/>
@@ -93,12 +105,12 @@
             <param name="stop_degree" desc="终止角(°)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
             <param name="min_distance" desc="最小距离(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
         </Sub>
-        <Sub name="backward_laser" desc="后激光雷达" image="7.png">
+        <Sub name="backward_laser" desc="后激光雷达" image="images/7.png">
             <param name="enable" desc="是否启用" show_type="combox" default_value="0">
                 <combox value="0" desc="是"/>
                 <combox value="1" desc="否"/>
             </param>
-            <param name="model" desc="型号" show_type="combox" default_value="R3188">
+            <param name="model" desc="型号" show_type="combox" default_value="MRL1500">
                 <combox value="MRL1500" desc="MRL1500"/>
                 <combox value="OMD30M-R2000-B23-V1V1D-SD-1L" desc="OMD30M-R2000-B23-V1V1D-SD-1L"/>
                 <combox value="nanoScan3_Core" desc="nanoScan3 Core"/>
@@ -121,7 +133,7 @@
                 <combox value="0" desc="是"/>
                 <combox value="1" desc="否"/>
             </param>
-            <param name="sign_path" desc="信号通道" show_type="combox" default_value="0">
+            <param name="sign_path" desc="信号通道" show_type="combox" default_value="DI0001">
                 <combox value="DI0001" desc="DI0001"/>
             </param>
             <param name="opposite" desc="是否取反" show_type="combox" default_value="0">
@@ -134,7 +146,7 @@
                 <combox value="0" desc="是"/>
                 <combox value="1" desc="否"/>
             </param>
-            <param name="sign_path" desc="信号通道" show_type="combox" default_value="0">
+            <param name="sign_path" desc="信号通道" show_type="combox" default_value="DI0001">
                 <combox value="DI0001" desc="DI0001"/>
             </param>
             <param name="opposite" desc="是否取反" show_type="combox" default_value="0">
@@ -147,7 +159,7 @@
                 <combox value="0" desc="是"/>
                 <combox value="1" desc="否"/>
             </param>
-            <param name="sign_path" desc="信号通道" show_type="combox" default_value="0">
+            <param name="sign_path" desc="信号通道" show_type="combox" default_value="DI0001">
                 <combox value="DI0001" desc="DI0001"/>
             </param>
             <param name="opposite" desc="是否取反" show_type="combox" default_value="0">
@@ -167,7 +179,7 @@
                     <combox value="0" desc="是"/>
                     <combox value="1" desc="否"/>
                 </param>
-                <param name="sign_path" desc="信号通道" show_type="combox" default_value="0">
+                <param name="sign_path" desc="信号通道" show_type="combox" default_value="DI0001">
                     <combox value="DI0001" desc="DI0001"/>
                 </param>
                 <param name="opposite" desc="是否取反" show_type="combox" default_value="0">
@@ -176,7 +188,7 @@
                 </param>
             </Sub>
             <Sub name="driver" desc="驱动器">
-                <param name="brand" desc="品牌" show_type="combox" default_value="">
+                <param name="brand" desc="品牌" show_type="combox" default_value="Kinco_FD">
                     <combox value="Kinco_FD" desc="Kinco_FD"/>
                     <combox value="Syntron_LS" desc="Syntron_LS"/>
                     <combox value="Syntron_DS" desc="Syntron_DS"/>
@@ -187,7 +199,7 @@
                 <param name="resolution" desc="分辨率" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
                 <param name="wheel_d" desc="轮直径(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
                 <param name="rotate_speed" desc="最高转速(rpm)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-                <param name="reverse" desc="是否反向" show_type="combox">
+                <param name="reverse" desc="是否反向" show_type="combox" default_value="0">
                     <combox value="0" desc="是"/>
                     <combox value="1" desc="否"/>
                 </param>
@@ -202,7 +214,7 @@
                 <combox value="0" desc="仅下限位"/>
             </param>
             <Sub name="lower_switch" desc="下限位开关">
-                <param name="sign_path" desc="信号通道" show_type="combox" default_value="0">
+                <param name="sign_path" desc="信号通道" show_type="combox" default_value="DI0001">
                     <combox value="DI0001" desc="DI0001"/>
                 </param>
                 <param name="opposite" desc="是否取反" show_type="combox" default_value="0">
@@ -211,7 +223,7 @@
                 </param>
             </Sub>
             <Sub name="driver" desc="驱动器">
-                <param name="brand" desc="品牌" show_type="combox" default_value="">
+                <param name="brand" desc="品牌" show_type="combox" default_value="Kinco_FD">
                     <combox value="Kinco_FD" desc="Kinco_FD"/>
                     <combox value="Syntron_LS" desc="Syntron_LS"/>
                     <combox value="Syntron_DS" desc="Syntron_DS"/>
@@ -222,7 +234,7 @@
                 <param name="resolution" desc="分辨率" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
                 <param name="wheel_d" desc="轮直径(m)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
                 <param name="rotate_speed" desc="最高转速(rpm)" show_type="input" data_type="int" default_value="0" min="0" max="127"/>
-                <param name="reverse" desc="是否反向" show_type="combox">
+                <param name="reverse" desc="是否反向" show_type="combox" default_value="0">
                     <combox value="0" desc="是"/>
                     <combox value="1" desc="否"/>
                 </param>
@@ -235,7 +247,7 @@
                 <combox value="0" desc="是"/>
                 <combox value="1" desc="否"/>
             </param>
-            <param name="sign_path" desc="信号通道" show_type="combox" default_value="0">
+            <param name="sign_path" desc="信号通道" show_type="combox" default_value="DI0001">
                 <combox value="DI0001" desc="DI0001"/>
             </param>
             <param name="opposite" desc="是否取反" show_type="combox" default_value="0">
@@ -248,7 +260,7 @@
                 <combox value="0" desc="是"/>
                 <combox value="1" desc="否"/>
             </param>
-            <param name="sign_path" desc="信号通道" show_type="combox" default_value="0">
+            <param name="sign_path" desc="信号通道" show_type="combox" default_value="DI0001">
                 <combox value="DI0001" desc="DI0001"/>
             </param>
             <param name="opposite" desc="是否取反" show_type="combox" default_value="0">
@@ -261,7 +273,7 @@
                 <combox value="0" desc="是"/>
                 <combox value="1" desc="否"/>
             </param>
-            <param name="sign_path" desc="信号通道" show_type="combox" default_value="0">
+            <param name="sign_path" desc="信号通道" show_type="combox" default_value="DI0001">
                 <combox value="DI0001" desc="DI0001"/>
             </param>
             <param name="opposite" desc="是否取反" show_type="combox" default_value="0">
@@ -271,12 +283,22 @@
         </Sub>
     </Module>
     <Module name="others" desc="其他">
+        <Sub name="dev_assicoate" desc="设备关联" show_type="double_combox">
+            <param name="dev_group" desc="设备组">
+                <combox value="test1" desc="测试1"/>
+                <combox value="test2" desc="测试2"/>
+            </param>
+            <param name="logic" desc="关联逻辑">
+                <combox value="logic1" desc="逻辑1"/>
+                <combox value="logic2" desc="逻辑2"/>
+            </param>
+        </Sub>
         <Sub name="BMS" desc="电池BMS">
             <param name="enable" desc="是否启用" show_type="combox" default_value="0">
                 <combox value="0" desc="是"/>
                 <combox value="1" desc="否"/>
             </param>
-            <param name="model" desc="型号" show_type="combox" default_value="0">
+            <param name="model" desc="型号" show_type="combox" default_value="Type1">
                 <combox value="Type1" desc="Type1"/>
             </param>
             <param name="sign_path" desc="信号通道" show_type="combox" default_value="0">
@@ -297,7 +319,7 @@
                     <combox value="0" desc="是"/>
                     <combox value="1" desc="否"/>
                 </param>
-                <param name="sign_path" desc="信号通道" show_type="combox" default_value="0">
+                <param name="sign_path" desc="信号通道" show_type="combox" default_value="DI0001">
                     <combox value="DI0001" desc="DI0001"/>
                 </param>
                 <param name="opposite" desc="是否取反" show_type="combox" default_value="0">
@@ -310,7 +332,7 @@
                     <combox value="0" desc="是"/>
                     <combox value="1" desc="否"/>
                 </param>
-                <param name="sign_path" desc="信号通道" show_type="combox" default_value="0">
+                <param name="sign_path" desc="信号通道" show_type="combox" default_value="DI0001">
                     <combox value="DI0001" desc="DI0001"/>
                 </param>
                 <param name="opposite" desc="是否取反" show_type="combox" default_value="0">

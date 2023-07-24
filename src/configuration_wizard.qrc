@@ -12,12 +12,15 @@
     <file>qml/stores/MainStore.qml</file>
     <file>qml/stores/RootStore.qml</file>
     <file>qml/stores/WizardStore.qml</file>
+    <file>qml/stores/ChassisStore.qml</file>
 
     <file>qml/components/DynComponentA.qml</file>
     <file>qml/components/DynComponentB.qml</file>
     <file>qml/components/DynContentA.qml</file>
     <file>qml/components/DynContentB.qml</file>
     <file>qml/components/DynContentC.qml</file>
+    <file>qml/components/ChassisParam.qml</file>
+    <file>qml/components/TwoWheelSteel.qml</file>
     <file>qml/components/Searchbar.qml</file>
     <file>qml/components/TitleLine.qml</file>
 
@@ -27,6 +30,7 @@
 
     <file>qml/middlewares/BusyIndicatorMiddleware.qml</file>
     <file>qml/middlewares/GenerateFileMiddleware.qml</file>
+    <file>qml/middlewares/CheckParamMiddleware.qml</file>
 
     <file>images/1.png</file>
     <file>images/2.png</file>

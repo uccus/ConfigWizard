@@ -9,6 +9,8 @@ ActionCreator {
     signal toNextPage();
     // 生成
     signal generateFile();
+    // 生成结果
+    signal generateFileResult(int result);
     // 去到指定向导页面
     signal toNextWizardPage(int index);
     // 页面加载状态改变

@@ -40,6 +40,33 @@ bool XmlWraper::toXml(const QString &json)
                     }
                 }
             }
+            else if (root_obj[key].isObject()){
+                QJsonObject object = root_obj[key].toObject();
+                if (object.contains("show_type")){
+                    if(object["show_type"] == "double_combox"){
+                        QJsonArray array = object["data"].toArray();
+                        for(int i = 0; i < array.size(); i++) {
+                            auto& data = module.add_node("param");
+                            QJsonObject value = array[i].toObject();
+                            foreach(const QString& key, value.keys()) {
+                                data.set_property(key.toStdString(), value[key].toString().toStdString());
+                            }
+                        }
+                    }
+                    else if (object["show_type"] == "chassis_param") {
+                        foreach(const QString& key, object.keys()){
+                            if (key == "type"){
+                                module.set_property(key.toStdString(), object[key].toString().toStdString());
+                            }
+                            else if (key != "show_type"){
+                                auto& data = module.add_node("param");
+                                data.set_property("name", key.toStdString());
+                                data.set_property("value", object[key].toString().toStdString());
+                            }
+                        }
+                    }
+                }
+            }
         }
         xml_file.save("./out2.xml");
     }

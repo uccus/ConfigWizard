@@ -21,6 +21,7 @@ Item {
 
         TButton {
             label.text: qsTr("完成")
+            enabled: MainStore.wizard.current_index === MainStore.ui_data.length - 1
             onClicked: AppActions.generateFile()
         }
     }

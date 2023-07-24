@@ -17,6 +17,28 @@ Item {
         ColumnLayout {
             id: layout
             anchors.fill: parent
+            spacing: 10
+            
+            ChassisParam {
+                id: chassis_param
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                chassis_obj: {
+                    for (var i = 0; i < MainStore.model.length; i++) {
+                        var tmp = MainStore.model[i];
+                        if ("show_type" in tmp){
+                            if ("chassis_param" === tmp.show_type){
+                                title = tmp.title;
+                                console.log(JSON.stringify(tmp));
+                                MainStore.chassis_param.module_name = tmp.module_name;
+                                return tmp;
+                            }
+                        }
+                    }
+                    return null;
+                }
+                visible: chassis_obj !== null;
+            }
 
             // 设备关联
             DoubleComboxPage {
@@ -27,7 +49,7 @@ Item {
                         if ("show_type" in tmp) {
                             if ("double_combox" === tmp.show_type){
                                 title = tmp.title;
-                                console.log(JSON.stringify(tmp));
+                                MainStore.dev_module_name = tmp.module_name;
                                 return tmp;
                             }
                         }

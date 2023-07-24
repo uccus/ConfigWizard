@@ -21,12 +21,25 @@ Store {
     // 来自c++的默认值
     property var data: JSON.parse(_data)
     
+    // 设备关联数据
+    property string dev_module_name: ""
+    property alias dev_list_model: listModel
+    ListModel {
+        id: listModel
+    }
+    
     // 当前使用的model, 需要过滤特殊show_type
     property var model: getModel()
     
+    // 向导相关
     property alias wizard: wizard
-    WizardStore { id: wizard}
+    WizardStore { id: wizard }
     
+    // 底盘参数相关
+    property alias chassis_param: chassis_param
+    ChassisStore { id: chassis_param }
+    
+    /////////////////////////////////////////////////////////////////////////////////
     function getUIData() {
         // 来自c++的json串
         var obj = JSON.parse(_test_ui_data);
@@ -85,7 +98,24 @@ Store {
         type: ActionTypes.generateFile
         
         onDispatched: {
-            _xml_wraper.toXml(JSON.stringify(data));
+            // 设备关联数据
+            var array = []
+            for (var i = 0; i < listModel.count; i++){
+                var e = listModel.get(i);
+                array.push(e);
+            }
+            if (array.length > 0) {
+                var obj = {
+                    "data": array,
+                    "show_type": "double_combox"
+                }
+                data[dev_module_name] = obj;
+            }
+            // 底盘结构数据
+            data[chassis_param.module_name] = chassis_param.data;
+
+            var ok = _xml_wraper.toXml(JSON.stringify(data));
+            AppActions.generateFileResult(ok);
         }
     }
 }

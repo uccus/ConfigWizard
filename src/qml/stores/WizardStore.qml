@@ -6,6 +6,8 @@ import "."
 Store {
     property int current_index: 0
     property string source: "DynmicMainPage.qml"
+    // 参数检查引用计数
+    property int check_ref: 0
     
     Filter {
         type: ActionTypes.toNextPage

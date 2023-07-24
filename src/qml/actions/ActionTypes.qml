@@ -7,6 +7,7 @@ KeyTable {
     property string toNextPage
     property string toNextWizardPage
     property string generateFile
+    property string generateFileResult
     property string goTo
     property string goBack
     property string showBusy

@@ -11,7 +11,7 @@ Middleware {
     TDialog{
         id: dialog
         titleText: qsTr("提示");
-        contentText: qsTr("生成成功")
+        contentText: ""
         buttons: [
             TDialogButton{
                 label.text: qsTr("好的")
@@ -24,7 +24,14 @@ Middleware {
         onTriggered: hideAndClose();
     }
 
-    function generateFile(message){
-        dialog.open();
+    function generateFileResult(message){
+        if (message.result) {
+            dialog.contentText = qsTr("生成成功");
+            dialog.open();
+        }
+        else {
+            dialog.contentText = message.message;
+            dialog.open();
+        }
     }
 }

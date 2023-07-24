@@ -7,7 +7,6 @@ import "../stores"
 import "."
 
 Item {
-    // implicitHeight: rect.implicitHeight
     property alias title: inter.title
     property alias model: inter.model
 
@@ -20,12 +19,6 @@ Item {
         property var model;
         property var left_model;
         property var right_model;
-    }
-    
-    ListModel {
-        id: listModel
-        // ListElement { left: "left"; right: "right"}
-        ListElement { left: "left"}
     }
     
     Loader {
@@ -52,13 +45,6 @@ Item {
         ColumnLayout {
             id: col
             clip: true
-            // anchors.fill: parent
-            // anchors {
-            //     left: parent.left
-            //     right: parent.right
-            //     top: parent.top
-            // }
-            height: title_line.expanded ? title_line.height + row.height + add.height + 40 : title_line.height
 
             TitleLine {
                 id: title_line
@@ -72,6 +58,7 @@ Item {
                 Layout.fillWidth: true
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
+                visible: title_line.expanded
                 
                 // 设备组
                 ColumnLayout {
@@ -81,11 +68,24 @@ Item {
                         text: inter.left_model.desc
                     }
                     Repeater {
-                        model: listModel
-                        delegate: ComboBox {
+                        model: MainStore.dev_list_model
+                        delegate: Item {
+                            id: item
+                            property int index: model.index
                             Layout.fillWidth: true
-                            model: {
-                                return inter.left_model.model.map(function(a){return a.desc;});
+                            Layout.preferredWidth: box.implicitWidth
+                            implicitHeight: box.implicitHeight
+                            ComboBox {
+                                id: box
+                                anchors.fill: parent
+                                currentIndex: -1
+                                model: {
+                                    return inter.left_model.model.map(function(a){return a.desc;});
+                                }
+                                onActivated: {
+                                    var value = inter.left_model.model[index].value;
+                                    MainStore.dev_list_model.setProperty(item.index, inter.left_model.name, value);
+                                }
                             }
                         }
                     }
@@ -98,12 +98,24 @@ Item {
                         text: inter.right_model.desc
                     }
                     Repeater {
-                        model: listModel
-                        delegate: ComboBox {
-                            height: 30
+                        model: MainStore.dev_list_model
+                        delegate: Item{
+                            id: item
+                            property int index: model.index
                             Layout.fillWidth: true
-                            model: {
-                                return inter.right_model.model.map(function(a){return a.desc;});
+                            Layout.preferredWidth: box.implicitWidth
+                            implicitHeight: box.implicitHeight
+                            ComboBox {
+                                id: box
+                                anchors.fill: parent
+                                currentIndex: -1
+                                model: {
+                                    return inter.right_model.model.map(function(a){return a.desc;});
+                                }
+                                onActivated: {
+                                    var value = inter.right_model.model[index].value;
+                                    MainStore.dev_list_model.setProperty(item.index, inter.right_model.name, value);
+                                }
                             }
                         }
                     }
@@ -115,13 +127,13 @@ Item {
                     TLabel {
                     }
                     Repeater {
-                        model:listModel
+                        model: MainStore.dev_list_model
                         delegate: TIconButton {
                             width: 40; height: 40
                             icon.position: TPosition.Only;
                             icon.source: TAwesomeType.FA_trash_o;
                             border.color: "transparent"
-                            onClicked: listModel.remove(model.index, 1)
+                            onClicked: MainStore.dev_list_model.remove(model.index, 1)
                         }
                     }
                 }
@@ -131,23 +143,19 @@ Item {
                 id: add
                 label.text: "+"
                 label.font.pixelSize: TPixelSizePreset.PH2
+                visible: title_line.expanded
                 height: 40
                 Layout.fillWidth: true
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
+                Layout.preferredWidth: loader.implicitWidth
                 onClicked: {
                     var obj = {};
-                    obj.left = "left";
-                    obj.right = "right";
-                    listModel.append(obj);
+                    obj[inter.left_model.name] = "";
+                    obj[inter.right_model.name] = "";
+                    MainStore.dev_list_model.append(obj);
                 }
             }
-            
-            // Behavior on height {
-            //     NumberAnimation {
-            //         duration: 200
-            //     }
-            // }
         }
     }
 }
