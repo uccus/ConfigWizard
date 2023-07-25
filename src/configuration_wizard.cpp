@@ -14,8 +14,6 @@
 
 int showConfigurationWizard()
 {
-    // qputenv("QSG_RENDER_LOOP","windows");
-    // qputenv("QSG_RENDER_LOOP","threaded");
     qputenv("QSG_RENDER_LOOP","basic");
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     
@@ -31,18 +29,14 @@ int showConfigurationWizard()
         qDebug() << "xml parser failed";
         return -1;
     }
-    // qDebug() << parser.getJson();
-    
-    // std::ofstream ofs("./data.json", std::ios::binary);
-    // ofs << parser.getDefaultValues().toStdString();
-    // ofs.close();
-    
+
     XmlWraper xml_wraper;
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("_test_ui_data", parser.getJson());
     engine.rootContext()->setContextProperty("_special_node", parser.getSpecialVariants());
     engine.rootContext()->setContextProperty("_data", parser.getDefaultValues());
+    engine.rootContext()->setContextProperty("_chassis_default_value", parser.getChassisDefaultValues());
     engine.rootContext()->setContextProperty("_xml_wraper", &xml_wraper);
     const QUrl url("qrc:/qml/main.qml");
     engine.load(url);

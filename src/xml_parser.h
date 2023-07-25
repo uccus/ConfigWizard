@@ -13,6 +13,7 @@ public:
     QString getJson();
     QVariantList getSpecialVariants();
     QString getDefaultValues();
+    QVariantMap getChassisDefaultValues();
 
 private:
     bool loadParams(kc_xml_node& sub_node, QJsonObject& parent, QJsonArray& out);
@@ -21,8 +22,10 @@ private:
     bool parseSubNode(kc_xml_node& sub_node, QJsonObject& out);
     bool loadModules(kc_xml_node& window_node, QJsonArray& out);
     bool loadDoubleCombox(kc_xml_node& sub_node, QJsonArray& out);
+    bool loadChassisDefaultValue(kc_xml_node& sub_node);
     
 private:
+    QVariantMap    _chassis_default_value;      // 底盘类型及默认参数
     QVariantList    _special_node;
     QString _str_json;   // 供界面展示用的数据
     QJsonObject _value_json; // 记录各字段值

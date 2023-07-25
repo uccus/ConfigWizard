@@ -115,7 +115,13 @@ Store {
             data[chassis_param.module_name] = chassis_param.data;
 
             var ok = _xml_wraper.toXml(JSON.stringify(data));
-            AppActions.generateFileResult(ok);
+            if (ok){
+                // 直接退出
+                Qt.exit(0);
+            }
+            else{
+                AppActions.generateFileResult(ok);
+            }
         }
     }
 }

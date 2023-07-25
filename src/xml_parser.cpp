@@ -42,6 +42,11 @@ QString XmlParser::getDefaultValues()
     return doc.toJson(QJsonDocument::Indented);
 }
 
+QVariantMap XmlParser::getChassisDefaultValues()
+{
+    return _chassis_default_value;
+}
+
 bool XmlParser::loadParams(kc_xml_node& sub_node, QJsonObject& parent, QJsonArray& out)
 {
     QString module_name = parent["module_name"].toString();
@@ -206,6 +211,9 @@ bool XmlParser::parseSubNode(kc_xml_node &sub_node, QJsonObject &sub_js_obj)
                 sub_js_obj["double_combox_model"] = double_combox_array;
             }
         }
+        else if (type == "chassis_param") {
+            loadChassisDefaultValue(sub_node);
+        }
         sub_js_obj["show_type"] = QString::fromStdString(type);
     }
     if (sub_node.has_property("image")) {
@@ -310,6 +318,36 @@ bool XmlParser::loadDoubleCombox(kc_xml_node &sub_node, QJsonArray &out)
             out.append(param_obj);
         }
         child_node = child_node.get_next_brother();
+    }
+    return true;
+}
+
+bool XmlParser::loadChassisDefaultValue(kc_xml_node &sub_node)
+{
+    auto& option_node = sub_node.get_first_child();
+    while(option_node.valid()) {
+        if (option_node.get_name() == "option") {
+            if (option_node.has_property("type")){
+                QString type = QString::fromStdString(option_node.get_property("type"));
+                QVariantMap val_map;
+                auto& param_node = option_node.get_first_child();
+                while(param_node.valid()) {
+                    QString name, default_value;
+                    if (param_node.has_property("name")) {
+                        name = QString::fromStdString(param_node.get_property("name"));
+                    }
+                    if (param_node.has_property("default_value")) {
+                        default_value = QString::fromStdString(param_node.get_property("default_value"));
+                    }
+                    val_map[name] = default_value;
+                    param_node = param_node.get_next_brother();
+                }
+                if (val_map.size() > 0) {
+                    _chassis_default_value[type] = val_map;
+                }
+            }
+        }
+        option_node = option_node.get_next_brother();
     }
     return true;
 }

@@ -29,7 +29,6 @@ Item {
                         if ("show_type" in tmp){
                             if ("chassis_param" === tmp.show_type){
                                 title = tmp.title;
-                                console.log(JSON.stringify(tmp));
                                 MainStore.chassis_param.module_name = tmp.module_name;
                                 return tmp;
                             }

@@ -6,6 +6,7 @@
 <!-- Sub 一般没有show_type,目前可以设置radio_group和double_combox -->
 <!-- param 参数项,可以是编辑框(input),可以是下拉框(combox) -->
 <!-- 每一个节点需要设置name，且每个module下的Sub和param的name需要唯一 -->
+<!-- option 表示可能存在的项 -->
 <Window>
     <!-- 特殊节点，程序内部做过滤用 -->
     <Special>
@@ -14,6 +15,12 @@
     </Special>
     <Module name="chassis" desc="底盘配置">
         <Sub name="chassis_structrue" desc="底盘结构" show_type="chassis_param" >
+            <!-- 例：可能存在双舵轮,定义字段名及默认值(字段名在程序中写死,可修改默认值) -->
+            <option type="two_wheel_steer">
+                <param name="length" default_value="1.5"/>
+                <param name="width" default_value="1"/>
+                <param name="distance" default_value="1"/>
+            </option>
         </Sub>
         <Sub name="install_direction" desc="控制器安装朝向" show_type="radio_group" default_value="0">
             <radio value="0" desc="纵向正装" image="images/FRC5000纵向正装.png"/>

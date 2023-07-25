@@ -22,10 +22,11 @@ Middleware {
             next(ActionTypes.toNextWizardPage, {index: message.index});
     }
 
-    function finished(message) {
+    function generateFile(message) {
         if (MainStore.wizard.check_ref > 0)
             next(ActionTypes.generateFileResult, {result: false, message: qsTr("参数不能为空")});
-        else
-            next(ActionTypes.finished);
+        else {
+            next(ActionTypes.generateFile);
+        }
     }
 }

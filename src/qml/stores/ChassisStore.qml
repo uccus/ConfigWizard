@@ -20,5 +20,8 @@ Store{
        {type: "two_wheel_steer", source: "TwoWheelSteel.qml"}
     ]
     
+    // 来自c++
+    property var default_value: _chassis_default_value
+    
     property var data: {"type": chassis_type, "show_type": "chassis_param"}
 }

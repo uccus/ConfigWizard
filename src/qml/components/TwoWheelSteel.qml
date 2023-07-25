@@ -170,6 +170,7 @@ Item {
             TInputField {
                 width: 40
                 height: 20
+                text: MainStore.chassis_param.default_value[MainStore.chassis_param.chassis_type].length
                 border.color: text === "" ? "red" : "#9D9D9D"
                 border.width: text === "" ? 2 : 1
                 clearable: false
@@ -182,10 +183,8 @@ Item {
                 anchors.right: parent.right
                 anchors.top: label.bottom
                 anchors.topMargin: 8
-                onEditingFinished: {
-                    MainStore.chassis_param.data["length"] = text;
-                }
                 onTextChanged: {
+                    MainStore.chassis_param.data["length"] = text;
                     if (text === ""){
                         MainStore.wizard.check_ref += 1
                     }
@@ -268,6 +267,7 @@ Item {
             TInputField {
                 width: 40
                 height: 20
+                text: MainStore.chassis_param.default_value[MainStore.chassis_param.chassis_type].width
                 border.color: text === "" ? "red" : "#9D9D9D"
                 border.width: text === "" ? 2 : 1
                 clearable: false
@@ -281,10 +281,8 @@ Item {
                 anchors.leftMargin: 10
                 anchors.top: label2.bottom
                 anchors.topMargin: 8
-                onEditingFinished: {
-                    MainStore.chassis_param.data["width"] = text;
-                }
                 onTextChanged: {
+                    MainStore.chassis_param.data["width"] = text;
                     if (text === ""){
                         MainStore.wizard.check_ref += 1
                     }
@@ -381,6 +379,7 @@ Item {
             TInputField {
                 width: 40
                 height: 20
+                text: MainStore.chassis_param.default_value[MainStore.chassis_param.chassis_type].distance
                 border.color: text === "" ? "red" : "#9D9D9D"
                 border.width: text === "" ? 2 : 1
                 clearable: false
@@ -396,10 +395,8 @@ Item {
                     top: label3.bottom
                     topMargin: 10
                 }
-                onEditingFinished: {
-                    MainStore.chassis_param.data["distance"] = text;
-                }
                 onTextChanged: {
+                    MainStore.chassis_param.data["distance"] = text;
                     if (text === ""){
                         MainStore.wizard.check_ref += 1
                     }
