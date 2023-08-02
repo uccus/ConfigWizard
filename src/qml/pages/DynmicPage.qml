@@ -95,7 +95,10 @@ Item {
             top: title_line.bottom
             left: parent.left
             right: parent.right
-            margins: 10
+            topMargin: 10
+            bottomMargin: 10
+            rightMargin: 10
+            leftMargin: 25
         }
         
         // 主项

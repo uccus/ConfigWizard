@@ -17,6 +17,8 @@
         <Sub name="chassis_structrue" desc="底盘结构" show_type="chassis_param" >
             <!-- 例：可能存在双舵轮,定义字段名及默认值(字段名在程序中写死,可修改默认值) -->
             <option type="two_wheel_steer">
+                <param name="x" default_value="1.5"/>
+                <param name="y" default_value="1.5"/>
                 <param name="length" default_value="1.5"/>
                 <param name="width" default_value="1"/>
                 <param name="distance" default_value="1"/>

@@ -27,8 +27,8 @@ Item {
 
         delegate: 
             Rectangle {
-                width: gview.cellWidth; height: gview.cellHeight
-                // color: "red"
+                width: gview.cellWidth - 20; height: gview.cellHeight
+                color: "#fafafa"
                 ColumnLayout {
                     anchors.fill: parent
                     RadioButton {

@@ -1,12 +1,14 @@
-﻿#include <qDebug>
+﻿#include <fstream>
+#include <QFile>
+#include <qDebug>
 #include <QJsonDocument>
 #include <QCoreApplication>
 #include "xml_parser.h"
 
-bool XmlParser::xml2Json(const QString &file_path)
+bool XmlParser::xml2Json(const std::string &file_path)
 {
     kc_xml_file loader;
-    bool ret = loader.load(file_path.toStdString());
+    bool ret = loader.load(file_path);
     if (!ret) return false;
     
     kc_xml_node node = loader.get_root();
@@ -22,6 +24,65 @@ bool XmlParser::xml2Json(const QString &file_path)
     doc.setObject(js_obj);
     _str_json = doc.toJson(QJsonDocument::Compact);
 
+    return true;
+}
+
+bool XmlParser::parseDataXml(const std::string &file_path)
+{
+    kc_xml_file loader;
+    bool ret = loader.load(file_path);
+    if (!ret) {
+        std::ofstream ofs("./test");
+        ofs << "parse failed";
+        ofs.close();
+    }
+    if (!ret) return false;
+
+    kc_xml_node node = loader.get_root();
+    if (node.get_name() != "Data") return false;
+    
+    kc_xml_node module_node = node.get_first_child();
+    while(module_node.valid()){
+        std::string module_name = module_node.get_property("name");
+        std::string type = module_node.get_property("type");
+        QVariantMap v_map;
+
+        kc_xml_node param_node = module_node.get_first_child();
+        QJsonArray param_arr;
+        while(param_node.valid()){
+            std::string param_name;
+            std::string param_value;
+
+            if(module_name == "dev_assicoate"){
+                param_name = param_node.get_property("dev_group");
+                param_value = param_node.get_property("logic");
+                QJsonObject param_obj;
+                param_obj["dev_group"] = QString::fromStdString(param_name);
+                param_obj["logic"] = QString::fromStdString(param_value);
+                param_arr.append(param_obj);
+            }
+            else if (!type.empty()) {
+                param_name = param_node.get_property("name");
+                param_value = param_node.get_property("value");
+                v_map[QString::fromStdString(param_name)] = QString::fromStdString(param_value);
+            }
+            else {
+                param_name = param_node.get_property("name");
+                param_value = param_node.get_property("value");
+                QJsonObject param_obj;
+                param_obj[QString::fromStdString(param_name)] = QString::fromStdString(param_value);
+                param_arr.append(param_obj);
+            }
+
+            param_node = param_node.get_next_brother();
+        }
+        if (!type.empty()) {
+            _chassis_default_value[QString::fromStdString(type)] = v_map;
+        }
+        _value_json[QString::fromStdString(module_name)] = param_arr;
+        module_node = module_node.get_next_brother();
+    }
+    
     return true;
 }
 
@@ -45,6 +106,11 @@ QString XmlParser::getDefaultValues()
 QVariantMap XmlParser::getChassisDefaultValues()
 {
     return _chassis_default_value;
+}
+
+QVariantMap XmlParser::getFieldMap()
+{
+    return _field_map;
 }
 
 bool XmlParser::loadParams(kc_xml_node& sub_node, QJsonObject& parent, QJsonArray& out)
@@ -349,5 +415,33 @@ bool XmlParser::loadChassisDefaultValue(kc_xml_node &sub_node)
         }
         option_node = option_node.get_next_brother();
     }
+    return true;
+}
+
+bool XmlParser::parseFieldMapXml()
+{
+    const QString file_path = qApp->applicationDirPath() + "/field_map.csv";
+    
+    QFile file(file_path);
+    if (file.open(QIODevice::ReadOnly)) {
+        QTextStream stream_text(&file);
+        while (!stream_text.atEnd()) {
+            QString line = stream_text.readLine();
+            QStringList params = line.split(",");
+            if (params.size() < 3) continue;
+            QString wizard_name = params[0];
+            QString type = params[1];
+            QString value = params[2];
+            QVariantMap v_map;
+            v_map["type"] = type;
+            v_map["value"] = value;
+            _field_map[wizard_name] = v_map;
+        }
+        file.close();
+    }
+    else{
+        return false;
+    }
+    
     return true;
 }

@@ -15,9 +15,6 @@ Store {
         onDispatched: {
             if (current_index < MainStore.ui_data.length - 1){
                 current_index += 1;
-                // 相同页面，清空后加载
-                // source = "";
-                // source = "DynmicMainPage.qml"
             }
         }
     }
@@ -27,9 +24,6 @@ Store {
         onDispatched: {
             if (current_index > 0){
                 current_index -= 1;
-                // 相同页面，清空后加载
-                // source = "";
-                // source = "DynmicMainPage.qml"
             }
         }
     }
@@ -38,9 +32,6 @@ Store {
         onDispatched: {
             if (current_index == message.index) return;
             current_index = message.index;
-            // 相同页面，清空后加载
-            // source = "";
-            // source = "DynmicMainPage.qml"
         }
     }
 }

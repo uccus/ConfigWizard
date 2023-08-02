@@ -17,6 +17,8 @@ ActionCreator {
     signal loaderStatusChanged(int status);
     // 显示等待框
     signal showBusy(bool visible);
+    // 选择变量
+    signal selectVariable(string name);
     
     // 关键字搜索
     signal searchKeyword(string keyword);

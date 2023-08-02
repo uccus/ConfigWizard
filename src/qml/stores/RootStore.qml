@@ -26,6 +26,7 @@ Store {
     property alias dev_list_model: listModel
     ListModel {
         id: listModel
+        // { left_model_name: left_value; right_model_name: right_value }
     }
     
     // 当前使用的model, 需要过滤特殊show_type
@@ -54,6 +55,8 @@ Store {
     // 通过模块名和字段名获取值
     function getValue(module_name, param_name){
         // console.log("getValue: ", module_name, param_name)
+        // console.log("--------------------------------");
+        // console.log(JSON.stringify(data.stop));
         if (module_name in data){
             var values = data[module_name];
             for (var i = 0; i < values.length; i++){
@@ -104,22 +107,20 @@ Store {
                 var e = listModel.get(i);
                 array.push(e);
             }
-            if (array.length > 0) {
-                var obj = {
-                    "data": array,
-                    "show_type": "double_combox"
-                }
-                data[dev_module_name] = obj;
+            var obj = {
+                "data": array,
+                "show_type": "double_combox"
             }
+            data[dev_module_name] = obj;
             // 底盘结构数据
             data[chassis_param.module_name] = chassis_param.data;
 
             var ok = _xml_wraper.toXml(JSON.stringify(data));
-            if (ok){
+            if (ok) {
                 // 直接退出
                 Qt.exit(0);
             }
-            else{
+            else {
                 AppActions.generateFileResult(ok);
             }
         }

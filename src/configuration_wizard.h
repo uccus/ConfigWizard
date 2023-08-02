@@ -14,7 +14,8 @@
 extern "C" {
 #endif // __cplusplus
        
-    int CONFIGURATION_WIZARD_API showConfigurationWizard();
+    int CONFIGURATION_WIZARD_API showConfigurationWizard(const std::string& modle_path);
+    std::string CONFIGURATION_WIZARD_API getWizardInfoFilePath();
 
 #ifdef __cplusplus
 }

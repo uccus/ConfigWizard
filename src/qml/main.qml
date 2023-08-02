@@ -13,9 +13,13 @@ import "./middlewares"
 Window {
     id: root
     visible: true
-    width: 800; height: 800
-    minimumWidth: 600
+    width: 820; height: 800
+    minimumWidth: 820
+    maximumWidth: 820
+    minimumHeight: 800
+    maximumHeight: 800
     color: "#fafafa"
+    title: qsTr("组态向导")
 
     T2DWorld{ mouseAreaCursorShape: Qt.PointingHandCursor }
 
@@ -24,7 +28,8 @@ Window {
 
         // SearchResultMiddleware {}
         // NavigationMiddleware {stack: stack}
-        BusyIndicatorMiddleware {bi: bi}
+        SelectVariableMiddleware{}
+        BusyIndicatorMiddleware{bi: bi}
         CheckParamMiddleware{}
         GenerateFileMiddleware{}
     }
@@ -61,6 +66,16 @@ Window {
             }
         }
     }
+
+    Component.onCompleted: {
+        // console.log("----->", JSON.stringify(MainStore.data.stop));
+        if ("dev_assicoate" in MainStore.data) {
+            for(var i = 0; i < MainStore.data.dev_assicoate.length; i++) {
+                var tmp = MainStore.data.dev_assicoate[i];
+                MainStore.dev_list_model.append(tmp);
+            }
+        }
+    }
     
     StackView {
         id: stack
@@ -73,9 +88,9 @@ Window {
         visible: true
         anchors.centerIn: parent;
     }
-    
-    Component.onCompleted: {
-        // console.log(_test_ui_data);
-        // MainStore.ui_data = JSON.parse("{\"name\": \"chassis\", 	\"model\": [{ 		\"module_name\": \"chassis_base\", 		\"title\": \"chassis base\", 		\"image\": { 			\"source\": \"../../images/3.png\", 			\"width\": 300, 			\"height\": 150 		}, 		\"description\": \"1231213\" 	}] }");
+
+    onClosing: {
+        // console.log("------->");
+        Qt.exit(-1);
     }
 }

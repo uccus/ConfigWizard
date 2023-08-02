@@ -9,7 +9,10 @@ Rectangle {
     color: "#f2f2f2"
     
     Column {
-        anchors.centerIn: parent
+        anchors.top: parent.top
+        anchors.topMargin: 20
+        anchors.horizontalCenter: parent.horizontalCenter
+        // anchors.centerIn: parent
         spacing: 10
         Repeater{
             model: MainStore.ui_data

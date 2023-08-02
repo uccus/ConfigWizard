@@ -7,13 +7,87 @@ import "../stores"
 Item {
     implicitHeight: rect.height
     implicitWidth: rect.width
+    
+    TLabel {
+        id: lab
+        text: qsTr("运动中心坐标(mm)")
+        anchors.top: parent.top
+        anchors.topMargin: 5
+        anchors.left: parent.left
+        anchors.leftMargin: 25
+    }
+    Row {
+        anchors.top: lab.bottom
+        anchors.topMargin: 5
+        anchors.left: parent.left
+        anchors.leftMargin: 25
+        spacing: 3
+        z: 1
+
+        TLabel {
+            text: "X:"
+            anchors.verticalCenter: parent.verticalCenter
+        }
+        TInputField {
+            id: x
+            width: 40; height: 25
+            clearable: false
+            placeholderLabel.text: ""
+            validator: DoubleValidator {
+                bottom: 0
+            }
+            maximumLength: 4
+            text: MainStore.chassis_param.default_value[MainStore.chassis_param.chassis_type].x
+            border.color: text === "" ? "red" : "#9D9D9D"
+            border.width: text === "" ? 2 : 1
+            onTextChanged: {
+                MainStore.chassis_param.data.x = text;
+                if (text === ""){
+                    MainStore.wizard.check_ref += 1
+                }
+                else {
+                    if (MainStore.wizard.check_ref > 0){
+                        MainStore.wizard.check_ref -= 1
+                    }
+                }
+            }
+        }
+        TLabel {
+            text: "Y:"
+            anchors.verticalCenter: parent.verticalCenter
+        }
+        TInputField {
+            id: y
+            width: 40; height: 25
+            clearable: false
+            placeholderLabel.text: ""
+            validator: DoubleValidator {
+                bottom: 0
+            }
+            maximumLength: 4
+            text: MainStore.chassis_param.default_value[MainStore.chassis_param.chassis_type].y
+            border.color: text === "" ? "red" : "#9D9D9D"
+            border.width: text === "" ? 2 : 1
+            onTextChanged: {
+                MainStore.chassis_param.data.y = text;
+                if (text === ""){
+                    MainStore.wizard.check_ref += 1
+                }
+                else {
+                    if (MainStore.wizard.check_ref > 0){
+                        MainStore.wizard.check_ref -= 1
+                    }
+                }
+            }
+        }
+    }
 
     TRectangle {
         id: rect
         width: 400;
         height: 350;
         anchors.centerIn: parent
-
+        
         TRectangle {
             id: body
             anchors.centerIn: parent
@@ -25,7 +99,7 @@ Item {
         
         // 原点
         TLabel {
-            text: "(0, 0)"
+            text: "(" + x.text + "," + y.text + ")"
             anchors{
                 centerIn: parent
                 horizontalCenterOffset: 20

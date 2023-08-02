@@ -65,27 +65,33 @@ Item {
                     id: left
                     Layout.fillWidth: true
                     TLabel {
+                        Layout.fillWidth: true
                         text: inter.left_model.desc
                     }
                     Repeater {
                         model: MainStore.dev_list_model
-                        delegate: Item {
+                        Item {
                             id: item
                             property int index: model.index
+                            property string value: model[inter.left_model.name]
+
                             Layout.fillWidth: true
-                            Layout.preferredWidth: box.implicitWidth
+                            Layout.preferredWidth: 350
+                            implicitWidth: box.implicitWidth
                             implicitHeight: box.implicitHeight
-                            ComboBox {
+                            XComboBox {
                                 id: box
                                 anchors.fill: parent
-                                currentIndex: -1
-                                model: {
-                                    return inter.left_model.model.map(function(a){return a.desc;});
+                                model: inter.left_model.model
+                                currentText: {
+                                    for (var i = 0; i < inter.left_model.model.length; i++) {
+                                        if (value === inter.left_model.model[i].value) {
+                                            return inter.left_model.model[i].desc;
+                                        }
+                                    }
+                                    return "";
                                 }
-                                onActivated: {
-                                    var value = inter.left_model.model[index].value;
-                                    MainStore.dev_list_model.setProperty(item.index, inter.left_model.name, value);
-                                }
+                                onTriggered: MainStore.dev_list_model.setProperty(item.index, inter.left_model.name, modelData.value);
                             }
                         }
                     }
@@ -95,27 +101,33 @@ Item {
                     id: right
                     Layout.fillWidth: true
                     TLabel {
+                        Layout.fillWidth: true
                         text: inter.right_model.desc
                     }
                     Repeater {
                         model: MainStore.dev_list_model
-                        delegate: Item{
+                        Item{
                             id: item
                             property int index: model.index
+                            property string value: model[inter.right_model.name]
+
                             Layout.fillWidth: true
-                            Layout.preferredWidth: box.implicitWidth
+                            Layout.preferredWidth: 350
+                            implicitWidth: box.implicitWidth
                             implicitHeight: box.implicitHeight
-                            ComboBox {
+                            XComboBox {
                                 id: box
                                 anchors.fill: parent
-                                currentIndex: -1
-                                model: {
-                                    return inter.right_model.model.map(function(a){return a.desc;});
+                                model: inter.right_model.model
+                                currentText: {
+                                    for (var i = 0; i < inter.right_model.model.length; i++) {
+                                        if (value === inter.right_model.model[i].value) {
+                                            return inter.right_model.model[i].desc;
+                                        }
+                                    }
+                                    return "";
                                 }
-                                onActivated: {
-                                    var value = inter.right_model.model[index].value;
-                                    MainStore.dev_list_model.setProperty(item.index, inter.right_model.name, value);
-                                }
+                                onTriggered: MainStore.dev_list_model.setProperty(item.index, inter.right_model.name, modelData.value);
                             }
                         }
                     }
@@ -129,7 +141,7 @@ Item {
                     Repeater {
                         model: MainStore.dev_list_model
                         delegate: TIconButton {
-                            width: 40; height: 40
+                            width: 40; height: 30
                             icon.position: TPosition.Only;
                             icon.source: TAwesomeType.FA_trash_o;
                             border.color: "transparent"
@@ -145,10 +157,10 @@ Item {
                 label.font.pixelSize: TPixelSizePreset.PH2
                 visible: title_line.expanded
                 height: 40
+                width: row.width
                 Layout.fillWidth: true
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
-                Layout.preferredWidth: loader.implicitWidth
                 onClicked: {
                     var obj = {};
                     obj[inter.left_model.name] = "";

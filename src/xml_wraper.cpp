@@ -1,4 +1,5 @@
-﻿#include <QDebug>
+﻿#include <fstream>
+#include <QDebug>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonDocument>
@@ -6,8 +7,9 @@
 #include "kcnetlib/file/kc_xml.h"
 using namespace kc::file;
 
-XmlWraper::XmlWraper(QObject *parent)
-    : QObject(parent)
+XmlWraper::XmlWraper(const std::string& out_path, QObject *parent)
+    : _out_path(out_path)
+    , QObject(parent)
 {
 }
 
@@ -27,6 +29,7 @@ bool XmlWraper::toXml(const QString &json)
         foreach (const QString& key, root_obj.keys()) {
             auto& module = root.add_node("Module");
             module.set_property("name", key.toStdString());
+            QString module_name = key;
 
             if (root_obj[key].isArray()){
                 QJsonArray array = root_obj[key].toArray();
@@ -37,6 +40,12 @@ bool XmlWraper::toXml(const QString &json)
                     foreach (const QString& key, value.keys()) {
                         param.set_property("name", key.toStdString());
                         param.set_property("value", value[key].toString().toStdString());
+                        QString last_name = module_name + "." + key;
+                        if (_field_map.contains(last_name)) {
+                            QVariantMap& v = _field_map[last_name].toMap();
+                            param.set_property("type", v["type"].toString().toStdString());
+                            param.set_property("extra", v["value"].toString().toStdString());
+                        }
                     }
                 }
             }
@@ -49,7 +58,13 @@ bool XmlWraper::toXml(const QString &json)
                             auto& data = module.add_node("param");
                             QJsonObject value = array[i].toObject();
                             foreach(const QString& key, value.keys()) {
+                                QString last_name = module_name + "." + key;
                                 data.set_property(key.toStdString(), value[key].toString().toStdString());
+                                if (_field_map.contains(last_name)) {
+                                    QVariantMap& v = _field_map[last_name].toMap();
+                                    data.set_property("type", v["type"].toString().toStdString());
+                                    data.set_property("extra", v["value"].toString().toStdString());
+                                }
                             }
                         }
                     }
@@ -59,16 +74,26 @@ bool XmlWraper::toXml(const QString &json)
                                 module.set_property(key.toStdString(), object[key].toString().toStdString());
                             }
                             else if (key != "show_type"){
+                                QString last_name = module_name + "." + key;
                                 auto& data = module.add_node("param");
                                 data.set_property("name", key.toStdString());
                                 data.set_property("value", object[key].toString().toStdString());
+                                if (_field_map.contains(last_name)) {
+                                    QVariantMap& v = _field_map[last_name].toMap();
+                                    data.set_property("type", v["type"].toString().toStdString());
+                                    data.set_property("extra", v["value"].toString().toStdString());
+                                }
                             }
                         }
                     }
                 }
             }
         }
-        xml_file.save("./out2.xml");
+        try{
+            std::ofstream ofs(_out_path, std::ios::trunc);
+            ofs.close();
+        }catch(...) {}
+        xml_file.save(_out_path);
     }
     return true;
 }

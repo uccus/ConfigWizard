@@ -16,12 +16,15 @@ Item {
 
         TButton {
             label.text: qsTr("下一步")
-            onClicked: AppActions.toNextPage()
+            onClicked: {
+                AppActions.toNextPage()
+                // AppActions.selectVariable("test")
+            }
         }
 
         TButton {
             label.text: qsTr("完成")
-            enabled: MainStore.wizard.current_index === MainStore.ui_data.length - 1
+            // enabled: MainStore.wizard.current_index === MainStore.ui_data.length - 1
             onClicked: AppActions.generateFile()
         }
     }

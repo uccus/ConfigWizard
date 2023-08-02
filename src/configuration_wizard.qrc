@@ -19,10 +19,13 @@
     <file>qml/components/DynContentA.qml</file>
     <file>qml/components/DynContentB.qml</file>
     <file>qml/components/DynContentC.qml</file>
+    <file>qml/components/XComboBox.qml</file>
     <file>qml/components/ChassisParam.qml</file>
     <file>qml/components/TwoWheelSteel.qml</file>
     <file>qml/components/Searchbar.qml</file>
     <file>qml/components/TitleLine.qml</file>
+    <file>qml/components/VariableDialog.qml</file>
+    <file>qml/components/XTableView.qml</file>
 
     <file>qml/actions/qmldir</file>
     <file>qml/actions/ActionTypes.qml</file>
@@ -31,6 +34,7 @@
     <file>qml/middlewares/BusyIndicatorMiddleware.qml</file>
     <file>qml/middlewares/GenerateFileMiddleware.qml</file>
     <file>qml/middlewares/CheckParamMiddleware.qml</file>
+    <file>qml/middlewares/SelectVariableMiddleware.qml</file>
 
     <file>images/1.png</file>
     <file>images/2.png</file>
